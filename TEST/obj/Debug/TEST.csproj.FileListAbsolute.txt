@@ -1,0 +1,11 @@
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\TEST.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\TEST.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\2D보험구분검증툴.exe
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\nunit.framework.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\2D보험구분검증툴.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\nunit.framework.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\nunit.framework.xml
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\obj\Debug\TEST.csprojResolveAssemblyReference.cache
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\obj\Debug\TEST.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\TEST\obj\Debug\TEST.pdb
+C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\TEST\bin\Debug\MessagingToolkit.QRCode.dll

@@ -1,0 +1,10 @@
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\bin\Debug\2D보험구분검증툴.exe
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\bin\Debug\2D보험구분검증툴.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\2D보험구분검증툴.csprojResolveAssemblyReference.cache
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\_2D보험구분검증툴.Form1.resources
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\_2D보험구분검증툴.Properties.Resources.resources
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\2D보험구분검증툴.csproj.GenerateResource.Cache
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\2D보험구분검증툴.exe
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\2D보험구분검증툴.pdb
+C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\bin\Debug\MessagingToolkit.QRCode.dll
+C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Debug\_2D보험구분검증툴.Spinner.resources

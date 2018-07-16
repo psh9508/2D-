@@ -1,0 +1,13 @@
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\ClassLibrary1Tests.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\ClassLibrary1Tests.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\ClassLibrary1.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\nunit.framework.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\2D보험구분검증툴.exe
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\ClassLibrary1.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\nunit.framework.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\nunit.framework.xml
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\bin\Debug\2D보험구분검증툴.pdb
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\obj\Debug\ClassLibrary1Tests.csprojResolveAssemblyReference.cache
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\obj\Debug\ClassLibrary1Tests.dll
+c:\users\psh9508\documents\visual studio 2015\Projects\2D보험구분검증툴\ClassLibrary1Tests\obj\Debug\ClassLibrary1Tests.pdb

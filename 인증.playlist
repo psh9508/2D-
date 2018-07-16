@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="UnitTests.인증하기.인증실패_2" /><Add Test="UnitTests.인증하기.인증실패_3" /><Add Test="UnitTests.인증하기.인증실패_1" /><Add Test="UnitTests.인증하기.올바르게인증되는경우_파라미터안넣고기본파라미터로했을경우" /><Add Test="UnitTests.인증하기.올바르게인증되는경우_파라미터99999999로넣었을경우" /><Add Test="UnitTests.인증하기.DLL이없을경우" /></Playlist>

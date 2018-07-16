@@ -1,0 +1,60 @@
+﻿using _2D보험구분검증툴.Class;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace _2D보험구분검증툴.Interface
+{
+    public interface IMessage
+    {
+        string GetMessage파일경로비어있음();
+        string GetMessage파일존재하지않음();
+        string GetMessage파일이QR코드가아님();
+        string GetMessage가능한버전이아님();
+    }
+
+
+    public interface I검증하기
+    {
+        string ErrorMessage { get; set; }
+        string Get바코드Data(string imagePath);
+        string Get암호화해제Data(string 암호화된Data);
+        bool IsValid(string imagePath);
+        BarcodeModel GetParsedModel(string imagePath);
+        bool Has파일경로(string imagePath);
+        bool Is파일존재(string imagePath);
+        bool Is파일QR코드(string imagePath);
+        bool IsValidVersion(string imagePath);
+    }
+
+    public interface I파일선택Button
+    {
+        void SetAfter파일선택(Action<string> action);
+        void OpenFileDialog();
+    }
+
+    public interface I인증하기
+    {
+        bool Is인증완료 { get; }
+        bool UB2DCheckAuthProcess(string 요양기관기호);
+        bool UB2DCheckAuth(out string day, string 요양기관기호 = "99999999");
+    }
+
+    public interface I외부모듈
+    {
+        int CallUBSetPharmInfo(string strPharmNum, string strPrdCode, StringBuilder iDay);
+        int CallUB2DDecode(string data, StringBuilder decrypt);
+    }
+
+    interface I보험구분검증
+    {
+        bool Validation(BarcodeModel model);
+        IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt);
+    }
+
+    interface IHeader<T>
+    {
+        T GetHeaderModel();
+    }
+}
