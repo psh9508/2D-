@@ -9,9 +9,9 @@ namespace _2D보험구분검증툴.Logic.보험구분Logic
 {
     class 의료급여1종Logic : I보험구분검증
     {
-        public 오류목록Model GetErrorModel(int cnt)
+        public IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt)
         {
-            throw new NotImplementedException();
+            return new List<오류목록Model> { new 오류목록Model { No = ++cnt, 유형 = "보험구분", 메세지 = "의료급여 1종 바코드는 보험구분이 2이고 의료급여종별은 1이여야 합니다." } };
         }
 
         public bool Validation(BarcodeModel model)
