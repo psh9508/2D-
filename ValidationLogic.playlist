@@ -1,1 +1,0 @@
-<Playlist Version="1.0"><Add Test="UnitTests.ValidationLogic.줄바꿈문제없는경우Test" /><Add Test="UnitTests.ValidationLogic.줄바꿈문제있는경우Test" /><Add Test="UnitTests.ValidationLogic.MSH구분자개수부족Test" /><Add Test="UnitTests.ValidationLogic.MSH구분자개수많음Test" /><Add Test="UnitTests.ValidationLogic.정상바코드Test" /><Add Test="UnitTests.ValidationLogic.MSH와ORC구분자개수부족Test" /></Playlist>
