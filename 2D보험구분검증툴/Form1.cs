@@ -95,8 +95,9 @@ namespace _2D보험구분검증툴
 
                 var 검증하기Logic = Get검증하기Logic();
 
-                if (!검증하기Logic.Validation(parsedModel))
-                    _오류목록.Add(검증하기Logic.GetErrorModel(_오류목록.Count()));
+                if(parsedModel != null)
+                    if (!검증하기Logic.Validation(parsedModel))
+                        _오류목록.AddRange(검증하기Logic.GetErrorModel(parsedModel, _오류목록.Count()));
 
                 SetErrorData(_오류목록);
 
@@ -183,7 +184,7 @@ namespace _2D보험구분검증툴
         public List<오류목록Model> GetErrorData(string data)
         {
             // 가장 마지막에 \r\n이 있다면 삭제해준다.
-            if(data.EndsWith("\r\n"))
+            while(data.EndsWith("\r\n"))
             {
                 var idx = data.LastIndexOf("\r\n");
                 data = data.Substring(0, idx);

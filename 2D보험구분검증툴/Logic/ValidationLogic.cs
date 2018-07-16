@@ -34,22 +34,22 @@ namespace _2D보험구분검증툴.Logic
             var retv = new List<오류목록Model>();
             int RXDcnt = 1;
 
-            //foreach (var item in model.RXDs)
-            //{
-            //    if (!string.IsNullOrEmpty(item.청구코드사용자코드))
-            //    {
-            //        if (!string.IsNullOrEmpty(item.약품명))
-            //        {
-            //            retv.Add(new 오류목록Model
-            //            {
-            //                No = cnt++,
-            //                메세지 = $"{RXDcnt}번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.",
-            //            });
-            //        }
-            //    }
+            foreach (var item in model.RXDs)
+            {
+                if (!string.IsNullOrEmpty(item.청구코드사용자코드))
+                {
+                    if (!string.IsNullOrEmpty(item.약품명))
+                    {
+                        retv.Add(new 오류목록Model
+                        {
+                            No = cnt++,
+                            메세지 = $"{RXDcnt}번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.",
+                        });
+                    }
+                }
 
-            //    RXDcnt++;
-            //}
+                RXDcnt++;
+            }
 
             return retv;
         }

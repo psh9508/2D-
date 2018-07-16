@@ -7,7 +7,7 @@ using _2D보험구분검증툴.Class;
 
 namespace _2D보험구분검증툴.Logic.보험구분Logic
 {
-    class 공무원상해Logic : I보험구분검증
+    public class 공무원상해Logic : I보험구분검증
     {
         public IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt)
         {
