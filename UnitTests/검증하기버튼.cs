@@ -36,9 +36,9 @@ namespace UnitTests
 
             Assert.Multiple(() =>
             {
-                frm.검증하기버튼(null);
+                frm.검증하기버튼(null, null);
                 Assert.AreEqual("파일경로가 비어있습니다. 파일을 먼저 선택해주시기 바랍니다.", 검증하기.ErrorMessage);
-                frm.검증하기버튼("");
+                frm.검증하기버튼("", null);
                 Assert.AreEqual("파일경로가 비어있습니다. 파일을 먼저 선택해주시기 바랍니다.", 검증하기.ErrorMessage);
             });
         }

@@ -16,11 +16,13 @@ namespace _2D보험구분검증툴.Logic
     public class 검증하기Logic : I검증하기
     {
         private readonly I외부모듈 _외부모듈;
+        private readonly I보험구분검증 _보험구분검증;
         public string ErrorMessage { get; set; }
 
-        public 검증하기Logic(I외부모듈 외부모듈)
+        public 검증하기Logic(I외부모듈 외부모듈/*, I보험구분검증 보험구분검증*/)
         {
             _외부모듈 = 외부모듈;
+            //_보험구분검증 = 보험구분검증;
         }
 
         public bool Has파일경로(string imagePath)

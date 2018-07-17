@@ -1,5 +1,6 @@
 ﻿using _2D보험구분검증툴.Interface;
 using _2D보험구분검증툴.Logic;
+using _2D보험구분검증툴.Logic.보험구분Logic;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -364,32 +365,19 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
         public void 검증하기버튼_줄바꿈문제있는경우Test_1()
         {
             #region Arrange
-            var expectedValue = new StringBuilder(1000000);
-            
             // 줄바꿈 문제가 있는 바코드
-            expectedValue.Append(@"MSH¿8.0.0¿256¿CNUH¿20150601120000
-FAC¿36100013¿전남대학교병원¿광주주광역시 동구 제봉로 42¿062-220-5162¿062-220-5170¿
-PRD¿김동현¿의사¿101402
-PID¿우경임¿5310132663413
-ORC¿2017110201593¿20171102¿¿¿7¿¿
-DG1¿K74.6¿B18.2
-IN1¿1¿¿¿30126723159¿9999¿¿¿¿¿¿¿¿
-RXD¿1¿1¿1¿642506570¿¿1.00¿3¿6¿¿매식후삼십분
-
-");
-
+            var expectedValue = "MSH¿0.8.0.0¿244¿Mediwell¿20180710005728\nFAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿\nPRD¿정형선¿의과¿555555\nPID¿김구번¿9003012123456\nORC¿00001¿01¿¿3¿¿¿\nDG1¿J00¿\nIN1¿1¿¿¿75217119915¿¿¿¿¿¿¿¿¿\nRXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿\nRXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿\nRXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿\n";
             var mock검증하기 = new Mock<I검증하기>();
 
             mock검증하기.Setup(x => x.IsValid(It.IsAny<string>()))
                 .Returns(true);
-
             mock검증하기.Setup(x => x.Get암호화해제Data(It.IsAny<string>()))
                 .Returns(expectedValue.ToString());
             #endregion
 
             #region Act
             var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(new 외부모듈()), null);
-            var result = form.검증하기버튼("");
+            var result = form.검증하기버튼("", new 국민공단Logic());
             #endregion
 
             #region Assert
@@ -420,7 +408,7 @@ RXD¿1¿1¿1¿642506570¿¿1.00¿3¿6¿¿매식후삼십분
 
             #region Act
             var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(mock외부모듈.Object), null);
-            var result = form.검증하기버튼("");
+            var result = form.검증하기버튼("", new 국민공단Logic());
             #endregion
 
             #region Assert

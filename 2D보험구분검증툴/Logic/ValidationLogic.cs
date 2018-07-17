@@ -99,7 +99,7 @@ namespace _2D보험구분검증툴.Logic
         {
             foreach (var item in splitedData)
             {
-                if(item.Contains("\r") || item.Contains("\n"))
+                if (item.Contains("\r") || item.Contains("\n"))
                     return @"[\r\n]로 이우러진 줄바꿈 문자가 없습니다.[\n]문자 대신 [\r\n]문자를 사용해주시기 바랍니다.";
             }
 

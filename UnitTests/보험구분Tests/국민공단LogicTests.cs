@@ -11,6 +11,7 @@ using System.Text;
 
 namespace UnitTests.보험구분Tests
 {
+    [TestFixture]
     public class 국민공단LogicTests
     {
         private string 정상바코드 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000
@@ -180,7 +181,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
 
             var form = new Form1(검증하기Mock.Object, null, null);
 
-            form.검증하기버튼("");
+            form.검증하기버튼("", new 국민공단Logic());
 
             Assert.That(0, Is.EqualTo(form._오류목록.Count()));
         }
@@ -198,7 +199,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
 
             var form = new Form1(검증하기Mock.Object, null, null);
 
-            form.검증하기버튼("");
+            form.검증하기버튼("", new 국민공단Logic());
 
             Assert.That(0, Is.EqualTo(form._오류목록.Count()));
         }
@@ -216,7 +217,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
 
             var form = new Form1(검증하기Mock.Object, null, null);
 
-            form.검증하기버튼("");
+            form.검증하기버튼("", new 국민공단Logic());
 
             Assert.Multiple(() =>
             {
@@ -238,7 +239,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
 
             var form = new Form1(검증하기Mock.Object, null, null);
 
-            form.검증하기버튼("");
+            form.검증하기버튼("", new 국민공단Logic());
 
             Assert.Multiple(() =>
             {
@@ -260,7 +261,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
 
             var form = new Form1(검증하기Mock.Object, null, null);
 
-            form.검증하기버튼("");
+            form.검증하기버튼("", new 국민공단Logic());
 
             Assert.Multiple(() =>
             {

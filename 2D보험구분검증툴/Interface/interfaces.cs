@@ -47,7 +47,7 @@ namespace _2D보험구분검증툴.Interface
         int CallUB2DDecode(string data, StringBuilder decrypt);
     }
 
-    interface I보험구분검증
+    public interface I보험구분검증
     {
         bool Validation(BarcodeModel model);
         IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt);

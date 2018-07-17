@@ -78,7 +78,7 @@ namespace _2D보험구분검증툴
             }
         }
 
-        public bool 검증하기버튼(string path)
+        public bool 검증하기버튼(string path, I보험구분검증 보험구분검증Logic)
         {
             if (!_검증하기Logic.IsValid(path))
                 return false;
@@ -93,11 +93,9 @@ namespace _2D보험구분검증툴
                 if(data != null)
                     _오류목록 = GetErrorData(data);
 
-                var 검증하기Logic = Get검증하기Logic();
-
                 if(parsedModel != null)
-                    if (!검증하기Logic.Validation(parsedModel))
-                        _오류목록.AddRange(검증하기Logic.GetErrorModel(parsedModel, _오류목록.Count()));
+                    if (!보험구분검증Logic.Validation(parsedModel))
+                        _오류목록.AddRange(보험구분검증Logic.GetErrorModel(parsedModel, _오류목록.Count()));
 
                 SetErrorData(_오류목록);
 
@@ -250,7 +248,9 @@ namespace _2D보험구분검증툴
         #region Events
         private void btn검증_Click(object sender, EventArgs e)
         {
-            if (검증하기버튼(txt파일경로.Text))
+            var 검증하기Logic = Get검증하기Logic();
+
+            if (검증하기버튼(txt파일경로.Text, 검증하기Logic))
             {                
                 Enable검증결과Group(true);
             }

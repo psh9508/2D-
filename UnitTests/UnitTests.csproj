@@ -80,6 +80,8 @@
     <Compile Include="ValidationLogic.cs" />
     <Compile Include="검증하기버튼.cs" />
     <Compile Include="보험구분Tests\국민공단LogicTests.cs" />
+    <Compile Include="보험구분Tests\산재LogicTests.cs" />
+    <Compile Include="보험구분Tests\차상위1종LogicTests.cs" />
     <Compile Include="인증하기.cs" />
     <Compile Include="파일선택하기.cs" />
   </ItemGroup>
