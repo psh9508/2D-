@@ -23,20 +23,20 @@ namespace _2D보험구분검증툴
 
         I검증하기 _검증하기Logic;
         I인증하기 _인증하기Logic;
-        I파일선택Button _파일선택Logic;
+        IForm _FormLogic;
 
         #region TEST
         public e인증결과 _e인증결과 { get; private set; }
         public List<오류목록Model> _오류목록 { get; private set; }
         #endregion
 
-        public Form1(I검증하기 검증하기Logic, I인증하기 인증하기, I파일선택Button 파일선택)
+        public Form1(I검증하기 검증하기Logic, I인증하기 인증하기, IForm 파일선택)
         {
             InitializeComponent();
 
             _검증하기Logic = 검증하기Logic;
             _인증하기Logic = 인증하기;
-            _파일선택Logic = 파일선택;
+            _FormLogic = 파일선택;
 
             Init();
         }
@@ -99,6 +99,12 @@ namespace _2D보험구분검증툴
                         _오류목록.AddRange(보험구분검증Logic.GetErrorModel(parsedModel, _오류목록.Count()));
 
                 SetErrorData(_오류목록);
+
+                if (_오류목록.Count <= 0)
+                {
+                    var selectedRadioButtonName = groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First().Name.Replace("rb", "");
+                    _FormLogic.SaveResult(selectedRadioButtonName, data);
+                }
 
                 return parsedModel == null ? false : true;
             }
@@ -213,13 +219,13 @@ namespace _2D보험구분검증툴
 
         public void 파일선택버튼()
         {
-            _파일선택Logic.SetAfter파일선택((imagePath) => {
+            _FormLogic.SetAfter파일선택((imagePath) => {
                 //Is그룹박스닫힘 = true;
                 Enable검증결과Group(false);
                 txt파일경로.Text = imagePath;
             });
 
-            _파일선택Logic.OpenFileDialog();
+            _FormLogic.OpenFileDialog();
         }
         #endregion
 

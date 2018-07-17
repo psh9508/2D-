@@ -16,7 +16,7 @@ namespace _2D보험구분검증툴
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new 검증하기Logic(new 외부모듈()), new 인증Logic(new 외부모듈()), new 파일선택Logic()));
+            Application.Run(new Form1(new 검증하기Logic(new 외부모듈()), new 인증Logic(new 외부모듈()), new FormLogic()));
         }
     }
 }

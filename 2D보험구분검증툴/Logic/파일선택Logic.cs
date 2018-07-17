@@ -1,15 +1,17 @@
 ﻿using _2D보험구분검증툴.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
 namespace _2D보험구분검증툴.Logic
 {
-    public class 파일선택Logic : I파일선택Button
+    public class FormLogic : IForm
     {
         private Action<string> _After파일선택;
+        private const string PATH = @"C:\보험구분검증결과\";
 
         public void OpenFileDialog()
         {
@@ -23,6 +25,19 @@ namespace _2D보험구분검증툴.Logic
         public void SetAfter파일선택(Action<string> action)
         {
             _After파일선택 = action;
+        }
+
+        public void SaveResult(string insuranceName, string data)
+        {
+            var fullPath = PATH + insuranceName + ".txt";
+
+            if (!Directory.Exists(PATH))
+                Directory.CreateDirectory(PATH);
+
+            if (!File.Exists(fullPath))
+                File.Delete(fullPath);
+
+            File.WriteAllText(fullPath, data);
         }
     }
 }

@@ -1487,7 +1487,7 @@
             // btn도움말
             // 
             this.btn도움말.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn도움말.Location = new System.Drawing.Point(419, 16);
+            this.btn도움말.Location = new System.Drawing.Point(420, 16);
             this.btn도움말.Name = "btn도움말";
             this.btn도움말.Size = new System.Drawing.Size(105, 19);
             this.btn도움말.TabIndex = 21;

@@ -28,10 +28,11 @@ namespace _2D보험구분검증툴.Interface
         bool IsValidVersion(string imagePath);
     }
 
-    public interface I파일선택Button
+    public interface IForm
     {
         void SetAfter파일선택(Action<string> action);
         void OpenFileDialog();
+        void SaveResult(string insuranceName, string data);
     }
 
     public interface I인증하기
