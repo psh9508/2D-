@@ -35,6 +35,12 @@
             this.btn파일선택 = new System.Windows.Forms.Button();
             this.btn닫기 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rb보훈국비 = new System.Windows.Forms.RadioButton();
+            this.rb산재 = new System.Windows.Forms.RadioButton();
+            this.rb자동차보험 = new System.Windows.Forms.RadioButton();
+            this.rb공무원상해 = new System.Windows.Forms.RadioButton();
+            this.rb의료급여2종 = new System.Windows.Forms.RadioButton();
+            this.rb의료급여1종 = new System.Windows.Forms.RadioButton();
             this.rb차상위F = new System.Windows.Forms.RadioButton();
             this.rb차상위2 = new System.Windows.Forms.RadioButton();
             this.rb차상위1 = new System.Windows.Forms.RadioButton();
@@ -152,12 +158,7 @@
             this.usageCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn인증하기 = new System.Windows.Forms.Button();
-            this.rb의료급여1종 = new System.Windows.Forms.RadioButton();
-            this.rb의료급여2종 = new System.Windows.Forms.RadioButton();
-            this.rb공무원상해 = new System.Windows.Forms.RadioButton();
-            this.rb자동차보험 = new System.Windows.Forms.RadioButton();
-            this.rb산재 = new System.Windows.Forms.RadioButton();
-            this.rb보훈국비 = new System.Windows.Forms.RadioButton();
+            this.btn도움말 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -250,6 +251,66 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "보험구분";
             // 
+            // rb보훈국비
+            // 
+            this.rb보훈국비.AutoSize = true;
+            this.rb보훈국비.Location = new System.Drawing.Point(303, 48);
+            this.rb보훈국비.Name = "rb보훈국비";
+            this.rb보훈국비.Size = new System.Drawing.Size(71, 16);
+            this.rb보훈국비.TabIndex = 10;
+            this.rb보훈국비.Text = "보훈국비";
+            this.rb보훈국비.UseVisualStyleBackColor = true;
+            // 
+            // rb산재
+            // 
+            this.rb산재.AutoSize = true;
+            this.rb산재.Location = new System.Drawing.Point(303, 21);
+            this.rb산재.Name = "rb산재";
+            this.rb산재.Size = new System.Drawing.Size(47, 16);
+            this.rb산재.TabIndex = 9;
+            this.rb산재.Text = "산재";
+            this.rb산재.UseVisualStyleBackColor = true;
+            // 
+            // rb자동차보험
+            // 
+            this.rb자동차보험.AutoSize = true;
+            this.rb자동차보험.Location = new System.Drawing.Point(163, 103);
+            this.rb자동차보험.Name = "rb자동차보험";
+            this.rb자동차보험.Size = new System.Drawing.Size(83, 16);
+            this.rb자동차보험.TabIndex = 8;
+            this.rb자동차보험.Text = "자동차보험";
+            this.rb자동차보험.UseVisualStyleBackColor = true;
+            // 
+            // rb공무원상해
+            // 
+            this.rb공무원상해.AutoSize = true;
+            this.rb공무원상해.Location = new System.Drawing.Point(163, 76);
+            this.rb공무원상해.Name = "rb공무원상해";
+            this.rb공무원상해.Size = new System.Drawing.Size(83, 16);
+            this.rb공무원상해.TabIndex = 7;
+            this.rb공무원상해.Text = "공무원상해";
+            this.rb공무원상해.UseVisualStyleBackColor = true;
+            // 
+            // rb의료급여2종
+            // 
+            this.rb의료급여2종.AutoSize = true;
+            this.rb의료급여2종.Location = new System.Drawing.Point(163, 48);
+            this.rb의료급여2종.Name = "rb의료급여2종";
+            this.rb의료급여2종.Size = new System.Drawing.Size(93, 16);
+            this.rb의료급여2종.TabIndex = 6;
+            this.rb의료급여2종.Text = "의료급여 2종";
+            this.rb의료급여2종.UseVisualStyleBackColor = true;
+            // 
+            // rb의료급여1종
+            // 
+            this.rb의료급여1종.AutoSize = true;
+            this.rb의료급여1종.Location = new System.Drawing.Point(163, 21);
+            this.rb의료급여1종.Name = "rb의료급여1종";
+            this.rb의료급여1종.Size = new System.Drawing.Size(93, 16);
+            this.rb의료급여1종.TabIndex = 5;
+            this.rb의료급여1종.Text = "의료급여 1종";
+            this.rb의료급여1종.UseVisualStyleBackColor = true;
+            // 
             // rb차상위F
             // 
             this.rb차상위F.AutoSize = true;
@@ -288,6 +349,7 @@
             this.rb국민공단.Name = "rb국민공단";
             this.rb국민공단.Size = new System.Drawing.Size(71, 16);
             this.rb국민공단.TabIndex = 1;
+            this.rb국민공단.TabStop = true;
             this.rb국민공단.Text = "국민공단";
             this.rb국민공단.UseVisualStyleBackColor = true;
             // 
@@ -363,6 +425,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btn도움말);
             this.groupBox4.Controls.Add(this.tabControl1);
             this.groupBox4.Location = new System.Drawing.Point(7, 16);
             this.groupBox4.Name = "groupBox4";
@@ -1421,65 +1484,16 @@
             this.btn인증하기.Visible = false;
             this.btn인증하기.Click += new System.EventHandler(this.btn인증하기_Click);
             // 
-            // rb의료급여1종
+            // btn도움말
             // 
-            this.rb의료급여1종.AutoSize = true;
-            this.rb의료급여1종.Location = new System.Drawing.Point(163, 21);
-            this.rb의료급여1종.Name = "rb의료급여1종";
-            this.rb의료급여1종.Size = new System.Drawing.Size(93, 16);
-            this.rb의료급여1종.TabIndex = 5;
-            this.rb의료급여1종.Text = "의료급여 1종";
-            this.rb의료급여1종.UseVisualStyleBackColor = true;
-            // 
-            // rb의료급여2종
-            // 
-            this.rb의료급여2종.AutoSize = true;
-            this.rb의료급여2종.Location = new System.Drawing.Point(163, 48);
-            this.rb의료급여2종.Name = "rb의료급여2종";
-            this.rb의료급여2종.Size = new System.Drawing.Size(93, 16);
-            this.rb의료급여2종.TabIndex = 6;
-            this.rb의료급여2종.Text = "의료급여 2종";
-            this.rb의료급여2종.UseVisualStyleBackColor = true;
-            // 
-            // rb공무원상해
-            // 
-            this.rb공무원상해.AutoSize = true;
-            this.rb공무원상해.Location = new System.Drawing.Point(163, 76);
-            this.rb공무원상해.Name = "rb공무원상해";
-            this.rb공무원상해.Size = new System.Drawing.Size(83, 16);
-            this.rb공무원상해.TabIndex = 7;
-            this.rb공무원상해.Text = "공무원상해";
-            this.rb공무원상해.UseVisualStyleBackColor = true;
-            // 
-            // rb자동차보험
-            // 
-            this.rb자동차보험.AutoSize = true;
-            this.rb자동차보험.Location = new System.Drawing.Point(163, 103);
-            this.rb자동차보험.Name = "rb자동차보험";
-            this.rb자동차보험.Size = new System.Drawing.Size(83, 16);
-            this.rb자동차보험.TabIndex = 8;
-            this.rb자동차보험.Text = "자동차보험";
-            this.rb자동차보험.UseVisualStyleBackColor = true;
-            // 
-            // rb산재
-            // 
-            this.rb산재.AutoSize = true;
-            this.rb산재.Location = new System.Drawing.Point(303, 21);
-            this.rb산재.Name = "rb산재";
-            this.rb산재.Size = new System.Drawing.Size(47, 16);
-            this.rb산재.TabIndex = 9;
-            this.rb산재.Text = "산재";
-            this.rb산재.UseVisualStyleBackColor = true;
-            // 
-            // rb보훈국비
-            // 
-            this.rb보훈국비.AutoSize = true;
-            this.rb보훈국비.Location = new System.Drawing.Point(303, 48);
-            this.rb보훈국비.Name = "rb보훈국비";
-            this.rb보훈국비.Size = new System.Drawing.Size(71, 16);
-            this.rb보훈국비.TabIndex = 10;
-            this.rb보훈국비.Text = "보훈국비";
-            this.rb보훈국비.UseVisualStyleBackColor = true;
+            this.btn도움말.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn도움말.Location = new System.Drawing.Point(419, 16);
+            this.btn도움말.Name = "btn도움말";
+            this.btn도움말.Size = new System.Drawing.Size(105, 19);
+            this.btn도움말.TabIndex = 21;
+            this.btn도움말.Text = "분석결과 도움말";
+            this.btn도움말.UseVisualStyleBackColor = true;
+            this.btn도움말.Click += new System.EventHandler(this.btn도움말_Click);
             // 
             // Form1
             // 
@@ -1665,6 +1679,7 @@
         private System.Windows.Forms.RadioButton rb공무원상해;
         private System.Windows.Forms.RadioButton rb의료급여2종;
         private System.Windows.Forms.RadioButton rb의료급여1종;
+        private System.Windows.Forms.Button btn도움말;
     }
 }
 

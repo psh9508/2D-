@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using UB2DBarcodeVerifier;
 using static _2D보험구분검증툴.Test.TestEnum;
 
 namespace _2D보험구분검증툴
@@ -239,6 +240,9 @@ namespace _2D보험구분검증툴
         {
             tabControl1.TabIndex = 0;
             groupBox3.Enabled = isEnable;
+
+            if (!isEnable)
+                lstError.Items.Clear();
         }
         #endregion
         public class Sample
@@ -275,5 +279,30 @@ namespace _2D보험구분검증툴
             인증시도();
         }
         #endregion
+
+        private void btn도움말_Click(object sender, EventArgs e)
+        {
+            if (!CheckOpened("도움말"))
+            {
+                var frmHelp = new FrmHelp();
+                frmHelp._parentForm = this;
+                frmHelp.ShowForm();
+            }
+        }
+
+        private bool CheckOpened(string name)
+        {
+            FormCollection fc = Application.OpenForms;
+
+            foreach (Form frm in fc)
+            {
+                if (frm.Text == name)
+                {
+                    frm.Activate();
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
