@@ -33,7 +33,85 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿";
 FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
 PRD¿정형선¿의과¿555555
 PID¿김구번¿9003012123456
-ORC¿00001¿01¿¿3¿¿¿
+ORC¿2008111711002¿01¿¿3¿¿¿
+DG1¿J00¿
+IN1¿1¿¿¿75217119915¿¿¿¿¿¿¿¿¿
+RXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿
+RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
+RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
+"; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
+
+        string 환자명공백 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000
+FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
+PRD¿김의사¿의사¿42409
+PID¿의 사랑¿7711111111111
+ORC¿2008111711002¿¿23¿¿7¿¿저함량 배수처방 사유♬A45900471, 사유코드 : C
+DG1¿ ¿ 
+IN1¿1¿¿¿12345678¿70271724¿¿¿¿¿¿¿¿
+RXD¿1¿2¿1¿661900010¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿1¿644900310¿¿2.500¿4¿1¿¿
+RXD¿1¿1¿1¿643306160¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿1¿642403700¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
+RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
+RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿";
+
+        string 처방의료인공백 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000
+FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
+PRD¿김의 사¿의사¿42409
+PID¿의사랑¿7711111111111
+ORC¿2008111711002¿¿23¿¿7¿¿저함량 배수처방 사유♬A45900471, 사유코드 : C
+DG1¿ ¿ 
+IN1¿1¿¿¿12345678¿70271724¿¿¿¿¿¿¿¿
+RXD¿1¿2¿1¿661900010¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿1¿644900310¿¿2.500¿4¿1¿¿
+RXD¿1¿1¿1¿643306160¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿1¿642403700¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
+RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
+RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿";
+
+        string 교부번호에러_1 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
+PRD¿정형선¿의과¿555555
+PID¿김구번¿9003012123456
+ORC¿11002¿01¿¿3¿¿¿
+DG1¿J00¿
+IN1¿1¿¿¿75217119915¿¿¿¿¿¿¿¿¿
+RXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿
+RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
+RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
+"; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
+
+        string 교부번호에러_2 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
+PRD¿정형선¿의과¿555555
+PID¿김구번¿9003012123456
+ORC¿2008131711002¿01¿¿3¿¿¿
+DG1¿J00¿
+IN1¿1¿¿¿75217119915¿¿¿¿¿¿¿¿¿
+RXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿
+RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
+RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
+"; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
+
+        string 교부번호에러_3 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
+PRD¿정형선¿의과¿555555
+PID¿김구번¿9003012123456
+ORC¿20082129811002¿01¿¿3¿¿¿
+DG1¿J00¿
+IN1¿1¿¿¿75217119915¿¿¿¿¿¿¿¿¿
+RXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿
+RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
+RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
+"; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
+
+        string 교부번호에러_4 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
+PRD¿정형선¿의과¿555555
+PID¿김구번¿9003012123456
+ORC¿200899999002¿01¿¿3¿¿¿
 DG1¿J00¿
 IN1¿1¿¿¿75217119915¿¿¿¿¿¿¿¿¿
 RXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿
@@ -297,7 +375,91 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
                 Assert.That("[IN1] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[1].메세지));
             });
         }
-        
+
+        [Test]
+        public void Form_GetErrorData_환자이름공백Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(환자명공백);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("환자명에 공백이 포함되어 있습니다. 공백 제거 후 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+        [Test]
+        public void Form_GetErrorData_처방의이름공백Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(처방의료인공백);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("처방의사명에 공백이 포함되어 있습니다. 공백 제거 후 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+        [Test]
+        public void Form_GetErrorData_교부번호_1Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(교부번호에러_1);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+        [Test]
+        public void Form_GetErrorData_교부번호_2Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(교부번호에러_2);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+        [Test]
+        public void Form_GetErrorData_교부번호_3Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(교부번호에러_3);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+        [Test]
+        public void Form_GetErrorData_교부번호_4Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(교부번호에러_4);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
         [Test]
         public void Form_GetErrorData_RXD해더누락Test()
         {
