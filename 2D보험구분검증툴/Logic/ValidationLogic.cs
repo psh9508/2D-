@@ -8,29 +8,78 @@ namespace _2D보험구분검증툴.Logic
 {
     public class ValidationLogic
     {
+        private static int _errorCnt = 1;
+
         public static List<오류목록Model> GetErrorMessage(string[] splitedData)
         {
-            List<오류목록Model> model = new List<오류목록Model>();
+            _errorCnt = 0;
 
-            int cnt = 1;
-            var s = Get줄바꿈오류(splitedData); // 줄바꿈 문제를 가장 처음에 확인한다.
+            var parsedModel = ParseLogic.Parse(splitedData);
+            var returnModel = new List<오류목록Model>();
 
-            if (s != string.Empty)
-                model.Add(Get오류목록Model(cnt++, s));
-            else // 줄바꿈 문제가 없을 때만 확인한다.
+            returnModel.AddRange(Get누락헤더여부(parsedModel));
+
+            if(returnModel.Count <= 0) // 헤더 누락이 없을 때만 확인한다.
             {
-                model.AddRange(Check구분자개수오류(ref cnt, splitedData));
-                model.AddRange(Check약품명생략오류(ref cnt, splitedData));
+                var data = Get줄바꿈오류(splitedData);
+
+                if(data != null)
+                    returnModel.Add(data);
+
+                if(returnModel.Count <= 0) // 줄바꿈 문제가 없을 때만 확인한다.
+                {
+                    returnModel.AddRange(Check구분자개수오류(splitedData));
+                    returnModel.AddRange(Check약품명생략오류(splitedData, parsedModel));
+                }
             }
 
-            return model;
+            return returnModel;
         }
 
+        private static List<오류목록Model> Get누락헤더여부(BarcodeModel model)
+        {
+            var retv = new List<오류목록Model>();
 
-        public static List<오류목록Model> Check약품명생략오류(ref int cnt, string[] splitedData)
+            if (model == null)
+                return retv;
+
+            var allHeaderProps = model.GetType().GetProperties();
+
+            foreach (var headerProp in allHeaderProps)
+            {
+                var headerValue = headerProp.GetValue(model, null);
+
+                if(headerValue == null)
+                {
+                    retv.Add(new 오류목록Model
+                    {
+                        No = _errorCnt++,
+                        유형 = "헤더 누락",
+                        메세지 = $"[{headerProp.Name}] 헤더가 누락 되었습니다.",
+                    });
+                }
+                else if (headerValue is List<RXD>)
+                {
+                    var RXDs = headerValue as List<RXD>;
+
+                    if(RXDs.Count <= 0)
+                    {
+                        retv.Add(new 오류목록Model
+                        {
+                            No = _errorCnt++,
+                            유형 = "헤더 누락",
+                            메세지 = $"[RXD] 헤더가 누락 되었습니다.",
+                        });
+                    }
+                }
+            }
+
+            return retv;
+        }
+
+        public static List<오류목록Model> Check약품명생략오류(string[] splitedData, BarcodeModel model)
         {
             var sb = new StringBuilder();
-            var model = ParseLogic.Parse(splitedData);
             var retv = new List<오류목록Model>();
             int RXDcnt = 1;
 
@@ -42,7 +91,7 @@ namespace _2D보험구분검증툴.Logic
                     {
                         retv.Add(new 오류목록Model
                         {
-                            No = cnt++,
+                            No = _errorCnt++,
                             메세지 = $"{RXDcnt}번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.",
                         });
                     }
@@ -54,7 +103,7 @@ namespace _2D보험구분검증툴.Logic
             return retv;
         }
 
-        public static List<오류목록Model> Check구분자개수오류(ref int cnt, string[] splitedData)
+        public static List<오류목록Model> Check구분자개수오류(string[] splitedData)
         {
             int nowSpliterNum = 0;
             int RXDcnt = 0;
@@ -76,9 +125,9 @@ namespace _2D보험구분검증툴.Logic
                         if (nowSpliterNum != Get구분자개수(nowHeaderName))
                         {
                             if (nowHeaderName == "RXD")
-                                retv.Add(new 오류목록Model { No = cnt++, 메세지 = $"{RXDcnt}번째 RXD의 구분자 개수가 다릅니다." });
+                                retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = $"{RXDcnt}번째 RXD의 구분자 개수가 다릅니다." });
                             else
-                                retv.Add(new 오류목록Model { No = cnt++, 메세지 = $"{nowHeaderName}의 구분자 개수가 다릅니다." });
+                                retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = $"{nowHeaderName}의 구분자 개수가 다릅니다." });
                         }
                     }
 
@@ -95,15 +144,26 @@ namespace _2D보험구분검증툴.Logic
             return i == splitedData.Count() - 1;
         }
 
-        public static string Get줄바꿈오류(string[] splitedData)
+        public static 오류목록Model Get줄바꿈오류(string[] splitedData)
         {
+            오류목록Model retv = null;
+
             foreach (var item in splitedData)
             {
                 if (item.Contains("\r") || item.Contains("\n"))
-                    return @"[\r\n]로 이우러진 줄바꿈 문자가 없습니다.[\n]문자 대신 [\r\n]문자를 사용해주시기 바랍니다.";
+                {
+                    retv = new 오류목록Model
+                    {
+                        No = _errorCnt++,
+                        유형 = "줄바꿈 문자 에러",
+                        메세지 = @"[\r\n]로 이우러진 줄바꿈 문자가 없습니다.[\n]문자 대신 [\r\n]문자를 사용해주시기 바랍니다.",
+                    };
+
+                    break;
+                }
             }
 
-            return "";
+            return retv;
         }
 
         private static int Get구분자개수(string headerName)

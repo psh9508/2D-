@@ -34,7 +34,7 @@ namespace _2D보험구분검증툴.Logic
             if (!Directory.Exists(PATH))
                 Directory.CreateDirectory(PATH);
 
-            if (!File.Exists(fullPath))
+            if (File.Exists(fullPath))
                 File.Delete(fullPath);
 
             File.WriteAllText(fullPath, data);

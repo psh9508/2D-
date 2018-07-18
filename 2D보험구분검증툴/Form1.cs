@@ -102,8 +102,10 @@ namespace _2D보험구분검증툴
 
                 if (_오류목록.Count <= 0)
                 {
-                    var selectedRadioButtonName = groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First().Name.Replace("rb", "");
-                    _FormLogic.SaveResult(selectedRadioButtonName, data);
+                    var selectedRadioButtonName = groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First()?.Name.Replace("rb", "");
+
+                    if(!string.IsNullOrEmpty(selectedRadioButtonName))
+                        _FormLogic.SaveResult(selectedRadioButtonName, data);
                 }
 
                 return parsedModel == null ? false : true;
@@ -145,7 +147,7 @@ namespace _2D보험구분검증툴
         {
             if (parsedModel == null)
                 return;
-            // TEST //ParseLogic.Practics(new BarcodeModel() { MSH = new MSH() { 버전정보 = "1", HHB = new Class.HHB() } });
+            
             int startLabelNumber = 40; // 폼에서 라벨을 만들다보니 시작이 40번이 되었다.
 
             foreach(var value in ParseLogic.GetAllPropertiesValue(parsedModel))

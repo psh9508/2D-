@@ -327,7 +327,7 @@ RXD¿1¿1¿1¿653601420¿¿1¿1¿1¿¿식후 30분
             검증하기Mock.Setup(x => x.Get암호화해제Data(It.IsAny<string>()))
                 .Returns(expectedValue);
 
-            var form = new Form1(검증하기Mock.Object, null, null);
+            var form = new Form1(검증하기Mock.Object, null, new FormLogic());
             return form;
         }
 

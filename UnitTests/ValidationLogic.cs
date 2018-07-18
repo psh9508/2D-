@@ -56,6 +56,38 @@ RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
 RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
 RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿";
 
+        string MSH해더누락 = @"FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
+PRD¿김의사¿의사¿42409
+PID¿의사랑¿7711111111111
+ORC¿2008111711002¿¿23¿¿7¿¿저함량 배수처방 사유♬A45900471, 사유코드 : C
+DG1¿ ¿ 
+IN1¿1¿¿¿12345678¿70271724¿¿¿¿¿¿¿¿
+RXD¿1¿2¿1¿661900010¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿1¿644900310¿¿2.500¿4¿1¿¿
+RXD¿1¿1¿1¿643306160¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿1¿642403700¿¿0.330¿3¿1¿¿
+RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
+RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
+RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿";
+
+        string FACIN1해더누락 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+PRD¿정형선¿의과¿555555
+PID¿김구번¿9003012123456
+ORC¿00001¿01¿¿3¿¿¿
+DG1¿J00¿
+RXD¿1¿1¿2¿644800190¿ ¿ 1.00¿1¿3¿ ¿
+RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
+RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
+"; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
+
+        string RXD해더누락 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000
+FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
+PRD¿김의사¿의사¿42409
+PID¿의사랑¿7711111111111
+ORC¿2008111711002¿¿23¿¿7¿¿저함량 배수처방 사유♬A45900471, 사유코드 : C
+DG1¿ ¿ 
+IN1¿1¿¿¿12345678¿70271724¿¿¿¿¿¿¿¿";
+
         string MSH구분자개수부족_유형2 = @"MSH¿0.8.0.0¿001¿YSR2000
 FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
 PRD¿김의사¿의사¿42409
@@ -238,6 +270,50 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
         }
 
         [Test]
+        public void Form_GetErrorData_MSH해더누락Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(MSH해더누락);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("[MSH] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+        [Test]
+        public void Form_GetErrorData_FACIN1해더누락Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(FACIN1해더누락);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(2, Is.EqualTo(errorModel.Count));
+                Assert.That("[FAC] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[0].메세지));
+                Assert.That("[IN1] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[1].메세지));
+            });
+        }
+        
+        [Test]
+        public void Form_GetErrorData_RXD해더누락Test()
+        {
+            var form = new _2D보험구분검증툴.Form1(null, null, null);
+
+            var errorModel = form.GetErrorData(RXD해더누락);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That("[RXD] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[0].메세지));
+            });
+        }
+
+
+        [Test]
         public void ValidationLogic_GetErrorMessage_MSH구분자개수부족Test()
         {
             var data = MSH구분자개수부족.Replace("\r\n", "¿").Split('¿');
@@ -376,7 +452,7 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             #endregion
 
             #region Act
-            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(new 외부모듈()), null);
+            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(new 외부모듈()), new FormLogic());
             var result = form.검증하기버튼("", new 국민공단Logic());
             #endregion
 
@@ -407,7 +483,7 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             #endregion
 
             #region Act
-            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(mock외부모듈.Object), null);
+            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(mock외부모듈.Object), new FormLogic());
             var result = form.검증하기버튼("", new 국민공단Logic());
             #endregion
 

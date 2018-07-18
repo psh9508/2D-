@@ -179,7 +179,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
             검증하기Mock.Setup(x => x.Get암호화해제Data(It.IsAny<string>()))
                 .Returns(정상바코드);
 
-            var form = new Form1(검증하기Mock.Object, null, null);
+            var form = new Form1(검증하기Mock.Object, null, new FormLogic());
 
             form.검증하기버튼("", new 국민공단Logic());
 
@@ -197,7 +197,7 @@ RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
             검증하기Mock.Setup(x => x.Get암호화해제Data(It.IsAny<string>()))
                 .Returns(정상바코드_유형2);
 
-            var form = new Form1(검증하기Mock.Object, null, null);
+            var form = new Form1(검증하기Mock.Object, null, new FormLogic());
 
             form.검증하기버튼("", new 국민공단Logic());
 

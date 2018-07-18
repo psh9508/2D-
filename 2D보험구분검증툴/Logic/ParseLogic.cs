@@ -48,8 +48,8 @@ namespace _2D보험구분검증툴.Logic
                     }
                 }
 
-                // 마지막 파씽된 값(RXD값)을 넣어준다.
-                parsedModel.RXDs.Add((RXD)header);
+                // 마지막 파씽된 값을 넣어준다.
+                SetModel(parsedModel, header);
 
                 return parsedModel;
             }
