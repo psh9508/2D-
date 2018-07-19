@@ -115,6 +115,8 @@
     <Compile Include="FrmHelp.designer.cs">
       <DependentUpon>FrmHelp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ObjectHelper.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Interface\classes.cs" />
     <Compile Include="Interface\interfaces.cs" />
     <Compile Include="Logic\ParseLogic.cs" />

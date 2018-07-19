@@ -13,7 +13,7 @@ namespace _2D보험구분검증툴.Logic
 
         public static List<오류목록Model> GetErrorMessage(string[] splitedData)
         {
-            _errorCnt = 0;
+            _errorCnt = 1;
 
             var parsedModel = ParseLogic.Parse(splitedData);
             var returnModel = new List<오류목록Model>();
@@ -110,41 +110,46 @@ namespace _2D보험구분검증툴.Logic
             if (!CheckScope(model.IN1.의료급여종별.Trim(), specialTypeList))
                 retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = "의료급여종별 값이 유효하지 않습니다. API문서의 데이터 범위를 다시한번 확인 바랍니다." });
 
-            if(model.IN1.보험구분.Trim() == "3")
+            if (model.IN1.보험구분.Trim() == "3")
                 if (!CheckTypeOfDate(model.ORC.재해발생일.Trim()))
                     retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = "재해발생일 값이 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다." });
 
-            for(int i = 0; i < model.RXDs.Count; i++)
+            retv.AddRange(CheckDrugValidation(model));
+
+            return retv;
+        }
+
+        private static IEnumerable<오류목록Model> CheckDrugValidation(BarcodeModel model)
+        {
+            for (int i = 0; i < model.RXDs.Count; i++)
             {
                 if (!string.IsNullOrEmpty(model.RXDs[i].청구코드사용자코드))
                 {
                     if (!string.IsNullOrEmpty(model.RXDs[i].약품명))
                     {
-                        retv.Add(new 오류목록Model
+                        yield return new 오류목록Model
                         {
                             No = _errorCnt++,
                             메세지 = $"{i + 1}번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.",
-                        });
+                        };
                     }
                 }
 
                 //처방구분 값 범위 확인.
                 string[] drugTypeList = { "1", "2", "3" };
                 if (!CheckScope(model.RXDs[i].처방구분, drugTypeList))
-                    retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 처방구분값이 유효하지 않습니다.API문서의 데이터 범위를 다시한번 확인 바랍니다." });
+                    yield return new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 처방구분값이 유효하지 않습니다.API문서의 데이터 범위를 다시한번 확인 바랍니다." };
 
                 //급여구분 값 범위 확인.
                 string[] insuranceTypeList = { "1", "2", "3", "4", "5" };
                 if (!CheckScope(model.RXDs[i].급여구분, insuranceTypeList))
-                    retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 급여구분값이 유효하지 않습니다. API문서의 데이터 범위를 다시한번 확인 바랍니다." });
+                    yield return new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 급여구분값이 유효하지 않습니다. API문서의 데이터 범위를 다시한번 확인 바랍니다." };
 
                 //코드구분 값 범위 확인.
                 string[] codeTypeList = { "1", "2" };
                 if (!CheckScope(model.RXDs[i].코드구분, codeTypeList))
-                    retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 코드구분값이 유효하지 않습니다. API문서의 데이터 범위를 다시한번 확인 바랍니다." });
+                    yield return new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 코드구분값이 유효하지 않습니다. API문서의 데이터 범위를 다시한번 확인 바랍니다." };
             }
-
-            return retv;
         }
 
         public static List<오류목록Model> Check구분자개수오류(string[] splitedData)

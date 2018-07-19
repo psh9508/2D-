@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using UB2DBarcodeVerifier;
+using _2D보험구분검증툴.Helper;
 using static _2D보험구분검증툴.Test.TestEnum;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -150,28 +151,37 @@ namespace _2D보험구분검증툴
         {
             if (parsedModel == null)
                 return;
-            
+
+            SetLabelInfo(parsedModel);
+            SetDrugInfo(parsedModel);
+        }
+
+        private void SetLabelInfo(BarcodeModel parsedModel)
+        {
             int startLabelNumber = 40; // 폼에서 라벨을 만들다보니 시작이 40번이 되었다.
 
-            foreach(var value in ParseLogic.GetAllPropertiesValue(parsedModel))
+            foreach (var value in ParseLogic.GetAllPropertiesValue(parsedModel))
             {
                 var labels = this.Controls.Find("label" + startLabelNumber++, true);
 
-                if(labels.Count() > 0)
+                if (labels.Count() > 0)
                 {
                     var targetLabel = labels[0] as Label;
 
-                    if(targetLabel != null)
+                    if (targetLabel != null)
                     {
                         targetLabel.Text = value;
                     }
                 }
             }
+        }
 
+        private void SetDrugInfo(BarcodeModel parsedModel)
+        {
             lstDrugs.Items.Clear();
             lstDrugs.BeginUpdate();
 
-            for(int i = 0; i < parsedModel.RXDs.Count; i++)
+            for (int i = 0; i < parsedModel.RXDs.Count; i++)
             {
                 ListViewItem item = new ListViewItem((i + 1).ToString());
                 item.SubItems.Add(parsedModel.RXDs[i].처방구분);
@@ -213,7 +223,7 @@ namespace _2D보험구분검증툴
             foreach (var error in errorData)
             {
                 ListViewItem item = new ListViewItem(error.No.ToString());
-                item.SubItems.Add("유형");
+                item.SubItems.Add(error.유형.IfNotHasValue("유형"));
                 item.SubItems.Add(error.메세지);
 
                 lstError.Items.Add(item);

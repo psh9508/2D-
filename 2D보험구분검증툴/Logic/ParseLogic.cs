@@ -154,6 +154,7 @@ namespace _2D보험구분검증툴.Logic
             }
         }
 
+        // 재귀를 이용해 범용적으로 쓸 수 있는 함수를 만들어보자.
         public static IEnumerable<string> Practics<T>(T data)
         {
             var myAssembly = Assembly.GetCallingAssembly().FullName;
@@ -165,6 +166,7 @@ namespace _2D보험구분검증툴.Logic
             return null;
         }
 
+        // 재귀를 이용해 범용적으로 쓸 수 있는 함수를 만들어보자.
         public static IEnumerable<string> GetVaule(object dataObj, PropertyInfo[] props)
         {
             var retv = new List<string>();
