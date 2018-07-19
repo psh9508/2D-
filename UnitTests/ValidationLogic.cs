@@ -634,7 +634,6 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             var expectedValue = new StringBuilder(1000000);
             expectedValue.Append(정상바코드);
 
-            var mock외부모듈 = new Mock<I외부모듈>();
             var mock검증하기 = new Mock<I검증하기>();
 
             mock검증하기.Setup(x => x.IsValid(It.IsAny<string>()))
@@ -645,7 +644,7 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             #endregion
 
             #region Act
-            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, new 인증Logic(mock외부모듈.Object), new FormLogic());
+            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, null, new FormLogic());
             var result = form.검증하기버튼("", new 국민공단Logic());
             #endregion
 

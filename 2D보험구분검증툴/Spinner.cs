@@ -11,19 +11,23 @@ namespace _2D보험구분검증툴
 {
     public partial class Spinner : Form
     {
-        public Form _parentForm { get; set; }
+        //public Form _parentForm { get; set; }
+        private readonly Form _parentForm;
+        private readonly string _message;
 
-        public Spinner()
+        public Spinner(Form parentForm, string message = "서버와 통신중입니다.")
         {
             InitializeComponent();
+            _parentForm = parentForm;
+            lblMessage.Text = message;
         }
 
         public void ShowFrom()
         {
             try
             {
-                //this.Top = (_parentForm.Top + (_parentForm.Height / 2)) - this.Height / 2;
-                //this.Left = (_parentForm.Left + (_parentForm.Width / 2)) - this.Width / 2;
+                this.Top = (_parentForm.Top + (_parentForm.Height / 2)) - this.Height / 2;
+                this.Left = (_parentForm.Left + (_parentForm.Width / 2)) - this.Width / 2;
             }
             finally
             {
@@ -31,15 +35,16 @@ namespace _2D보험구분검증툴
             }
         }
 
-        public BackgroundWorker GetLoadingWorker(/*Form parentFrom*/)
+        public BackgroundWorker GetLoadingWorker(Spinner loadingImg)
         {
             var worker = new BackgroundWorker();
-            var loadingImg = new Spinner();
+            //var loadingImg = new Spinner(Application.OpenForms["Form1"]);
+            //var loadingImg = this;
 
             worker.DoWork += new DoWorkEventHandler((object o, DoWorkEventArgs eargs) => {
-                //loadingImg.StartPosition = FormStartPosition.Manual;
+                loadingImg.StartPosition = FormStartPosition.Manual;
                 //loadingImg.StartPosition = FormStartPosition.CenterParent;
-                loadingImg.StartPosition = FormStartPosition.CenterScreen;
+                //loadingImg.StartPosition = FormStartPosition.CenterScreen;
                 //loadingImg._parentForm = parentFrom;
                 loadingImg.TopMost = true;
                 loadingImg.ShowFrom();
@@ -57,7 +62,7 @@ namespace _2D보험구분검증툴
                     loadingImg.Close();
                 }));
 
-                EndInvoke(task);
+                //EndInvoke(task);
             };
 
             //worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) => {

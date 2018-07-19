@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using UB2DBarcodeVerifier;
 using static _2D보험구분검증툴.Test.TestEnum;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace _2D보험구분검증툴
 {
@@ -30,13 +32,13 @@ namespace _2D보험구분검증툴
         public List<오류목록Model> _오류목록 { get; private set; }
         #endregion
 
-        public Form1(I검증하기 검증하기Logic, I인증하기 인증하기, IForm 파일선택)
+        public Form1(I검증하기 검증하기Logic, I인증하기 인증하기, IForm formLogic)
         {
             InitializeComponent();
 
             _검증하기Logic = 검증하기Logic;
             _인증하기Logic = 인증하기;
-            _FormLogic = 파일선택;
+            _FormLogic = formLogic;
 
             Init();
         }
@@ -52,6 +54,7 @@ namespace _2D보험구분검증툴
         {
             _Message = new Messages();
 
+            this.TopMost = false;
             groupBox3.Enabled = false;
         }
 
@@ -253,22 +256,36 @@ namespace _2D보험구분검증툴
                 lstError.Items.Clear();
         }
         #endregion
-        public class Sample
-        {
-            public string version { get; set; }
-        }
+      
         #region Events
         private void btn검증_Click(object sender, EventArgs e)
         {
             var 검증하기Logic = Get검증하기Logic();
 
-            if (검증하기버튼(txt파일경로.Text, 검증하기Logic))
-            {                
-                Enable검증결과Group(true);
-            }
-            else
+            var spinner = new Spinner(System.Windows.Forms.Application.OpenForms["Form1"], "검증하고 있습니다.");
+            var loadingThead = spinner.GetLoadingWorker(spinner);
+
+            loadingThead.RunWorkerAsync();
+
+            try
             {
-                Enable검증결과Group(false);
+                if (검증하기버튼(txt파일경로.Text, 검증하기Logic))
+                {
+                    Enable검증결과Group(true);
+
+                    loadingThead.Dispose();
+
+                    if (_오류목록.Count <= 0)
+                        MessageBox.Show(this, "검증이 완료 되었습니다.");
+                }
+                else
+                {
+                    Enable검증결과Group(false);
+                }
+            }
+            finally
+            {
+                loadingThead.Dispose();
             }
         }
 
@@ -300,7 +317,7 @@ namespace _2D보험구분검증툴
 
         private bool CheckOpened(string name)
         {
-            FormCollection fc = Application.OpenForms;
+            FormCollection fc = System.Windows.Forms.Application.OpenForms;
 
             foreach (Form frm in fc)
             {
@@ -311,6 +328,11 @@ namespace _2D보험구분검증툴
                 }
             }
             return false;
+        }
+
+        private void btn바코드보기_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

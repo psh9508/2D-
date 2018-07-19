@@ -54,6 +54,7 @@
             this.errorType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.errorMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btn도움말 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabMSH = new System.Windows.Forms.TabPage();
             this.grpMSH = new System.Windows.Forms.GroupBox();
@@ -158,7 +159,7 @@
             this.usageCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn인증하기 = new System.Windows.Forms.Button();
-            this.btn도움말 = new System.Windows.Forms.Button();
+            this.btn바코드보기 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -365,6 +366,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn바코드보기);
             this.groupBox3.Controls.Add(this.lbl오류목록여부);
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Controls.Add(this.groupBox4);
@@ -433,6 +435,17 @@
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "분석결과";
+            // 
+            // btn도움말
+            // 
+            this.btn도움말.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn도움말.Location = new System.Drawing.Point(420, 16);
+            this.btn도움말.Name = "btn도움말";
+            this.btn도움말.Size = new System.Drawing.Size(105, 19);
+            this.btn도움말.TabIndex = 21;
+            this.btn도움말.Text = "분석결과 도움말";
+            this.btn도움말.UseVisualStyleBackColor = true;
+            this.btn도움말.Click += new System.EventHandler(this.btn도움말_Click);
             // 
             // tabControl1
             // 
@@ -1484,16 +1497,16 @@
             this.btn인증하기.Visible = false;
             this.btn인증하기.Click += new System.EventHandler(this.btn인증하기_Click);
             // 
-            // btn도움말
+            // btn바코드보기
             // 
-            this.btn도움말.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn도움말.Location = new System.Drawing.Point(420, 16);
-            this.btn도움말.Name = "btn도움말";
-            this.btn도움말.Size = new System.Drawing.Size(105, 19);
-            this.btn도움말.TabIndex = 21;
-            this.btn도움말.Text = "분석결과 도움말";
-            this.btn도움말.UseVisualStyleBackColor = true;
-            this.btn도움말.Click += new System.EventHandler(this.btn도움말_Click);
+            this.btn바코드보기.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn바코드보기.Location = new System.Drawing.Point(433, 316);
+            this.btn바코드보기.Name = "btn바코드보기";
+            this.btn바코드보기.Size = new System.Drawing.Size(105, 19);
+            this.btn바코드보기.TabIndex = 22;
+            this.btn바코드보기.Text = "바코드 내용 보기";
+            this.btn바코드보기.UseVisualStyleBackColor = true;
+            this.btn바코드보기.Click += new System.EventHandler(this.btn바코드보기_Click);
             // 
             // Form1
             // 
@@ -1680,6 +1693,7 @@
         private System.Windows.Forms.RadioButton rb의료급여2종;
         private System.Windows.Forms.RadioButton rb의료급여1종;
         private System.Windows.Forms.Button btn도움말;
+        private System.Windows.Forms.Button btn바코드보기;
     }
 }
 

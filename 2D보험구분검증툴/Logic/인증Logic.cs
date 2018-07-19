@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace _2D보험구분검증툴.Logic
 {
@@ -26,8 +27,8 @@ namespace _2D보험구분검증툴.Logic
             string day;
             //string caption = "2D 인증확인";
 
-            var progressbar = new Spinner();
-            var loadingThread = progressbar.GetLoadingWorker();
+            var progressbar = new Spinner(Application.OpenForms["Form1"]);
+            var loadingThread = progressbar.GetLoadingWorker(progressbar);
 
             try
             {
