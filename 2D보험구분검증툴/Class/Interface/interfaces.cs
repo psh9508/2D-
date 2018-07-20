@@ -6,15 +6,6 @@ using System.Text;
 
 namespace _2D보험구분검증툴.Interface
 {
-    public interface IMessage
-    {
-        string GetMessage파일경로비어있음();
-        string GetMessage파일존재하지않음();
-        string GetMessage파일이QR코드가아님();
-        string GetMessage가능한버전이아님();
-    }
-
-
     public interface I검증하기
     {
         string ErrorMessage { get; set; }

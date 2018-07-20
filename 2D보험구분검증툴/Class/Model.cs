@@ -34,7 +34,6 @@ namespace _2D보험구분검증툴.Class
         
         [Value(0)]
         public string 버전정보 { get; set; }
-        //public HHB HHB { get; set; }
         [Value(1)]
         public string 병원전산업체코드 { get; set; }
         [Value(2)]
@@ -128,7 +127,6 @@ namespace _2D보험구분검증툴.Class
         public string 상병분류기호2 { get; set; }
     }
 
-    // 미사용필드 끝까지 만들어야겠다.
     public class IN1 : IHeader<IN1>
     {
         public IN1 GetHeaderModel()

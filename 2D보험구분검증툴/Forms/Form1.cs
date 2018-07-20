@@ -21,7 +21,6 @@ namespace _2D보험구분검증툴
 {
     public partial class Form1 : Form
     {
-        IMessage _Message;
         I검증하기 _검증하기Logic;
         I인증하기 _인증하기Logic;
         IForm _FormLogic;
@@ -52,8 +51,6 @@ namespace _2D보험구분검증툴
         #region Private Funcs
         private void Init()
         {
-            _Message = new Messages();
-
             this.TopMost = false;
             groupBox3.Enabled = false;
         }

@@ -100,62 +100,61 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\HeaderAttribute.cs" />
-    <Compile Include="Class\MessageHelper.cs" />
+    <Compile Include="Class\Helper\MessageHelper.cs" />
     <Compile Include="Class\Model.cs" />
     <Compile Include="Class\MyException.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHelp.cs">
+    <Compile Include="Forms\FrmHelp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmHelp.designer.cs">
+    <Compile Include="Forms\FrmHelp.designer.cs">
       <DependentUpon>FrmHelp.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmShowBarcode.cs">
+    <Compile Include="Forms\FrmShowBarcode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmShowBarcode.Designer.cs">
+    <Compile Include="Forms\FrmShowBarcode.Designer.cs">
       <DependentUpon>FrmShowBarcode.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper\ObjectHelper.cs" />
-    <Compile Include="Helper\StringHelper.cs" />
-    <Compile Include="Interface\classes.cs" />
-    <Compile Include="Interface\interfaces.cs" />
-    <Compile Include="Logic\ParseLogic.cs" />
-    <Compile Include="Logic\ValidationLogic.cs" />
-    <Compile Include="Logic\검증하기Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\공무원상해Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\국민공단Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\산재Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\의료급여1종Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\의료급여2종Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\자동차보험Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\차상위1Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\차상위2Logic.cs" />
-    <Compile Include="Logic\보험구분Logic\차상위FLogic.cs" />
-    <Compile Include="Logic\외부모듈.cs" />
-    <Compile Include="Logic\인증Logic.cs" />
-    <Compile Include="Logic\파일선택Logic.cs" />
+    <Compile Include="Class\Helper\ObjectHelper.cs" />
+    <Compile Include="Class\Helper\StringHelper.cs" />
+    <Compile Include="Class\Interface\interfaces.cs" />
+    <Compile Include="Class\Logic\ParseLogic.cs" />
+    <Compile Include="Class\Logic\ValidationLogic.cs" />
+    <Compile Include="Class\Logic\검증하기Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\공무원상해Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\국민공단Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\산재Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\의료급여1종Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\의료급여2종Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\자동차보험Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\차상위1Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\차상위2Logic.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\차상위FLogic.cs" />
+    <Compile Include="Class\Logic\외부모듈.cs" />
+    <Compile Include="Class\Logic\인증Logic.cs" />
+    <Compile Include="Class\Logic\파일선택Logic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spinner.cs">
+    <Compile Include="Forms\Spinner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Spinner.Designer.cs">
+    <Compile Include="Forms\Spinner.Designer.cs">
       <DependentUpon>Spinner.cs</DependentUpon>
     </Compile>
     <Compile Include="Test\TestEnum.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmHelp.resx">
+    <EmbeddedResource Include="Forms\FrmHelp.resx">
       <DependentUpon>FrmHelp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmShowBarcode.resx">
+    <EmbeddedResource Include="Forms\FrmShowBarcode.resx">
       <DependentUpon>FrmShowBarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -168,7 +167,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Spinner.resx">
+    <EmbeddedResource Include="Forms\Spinner.resx">
       <DependentUpon>Spinner.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
