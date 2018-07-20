@@ -22,11 +22,10 @@ namespace _2D보험구분검증툴
     public partial class Form1 : Form
     {
         IMessage _Message;
-        public TextBox Get파일경로 { get { return txt파일경로; } }
-
         I검증하기 _검증하기Logic;
         I인증하기 _인증하기Logic;
         IForm _FormLogic;
+        private string _barcodeString;
 
         #region TEST
         public e인증결과 _e인증결과 { get; private set; }
@@ -90,13 +89,13 @@ namespace _2D보험구분검증툴
 
             try
             {
-                var data = _검증하기Logic.Get암호화해제Data(path);
-                var parsedModel = ParseLogic.Parse(data);
+                _barcodeString = _검증하기Logic.Get암호화해제Data(path);
+                var parsedModel = ParseLogic.Parse(_barcodeString);
 
                 DisplayData(parsedModel);
 
-                if(data != null)
-                    _오류목록 = GetErrorData(data);
+                if(_barcodeString != null)
+                    _오류목록 = GetErrorData(_barcodeString);
 
                 if(parsedModel != null)
                     if (!보험구분검증Logic.Validation(parsedModel))
@@ -106,10 +105,10 @@ namespace _2D보험구분검증툴
 
                 if (_오류목록.Count <= 0)
                 {
-                    var selectedRadioButtonName = groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First()?.Name.Replace("rb", "");
+                    var selectedRadioButtonName = GetSelectedInsuranceType();
 
                     if(!string.IsNullOrEmpty(selectedRadioButtonName))
-                        _FormLogic.SaveResult(selectedRadioButtonName, data);
+                        _FormLogic.SaveResult(selectedRadioButtonName, _barcodeString);
                 }
 
                 return parsedModel == null ? false : true;
@@ -279,6 +278,8 @@ namespace _2D보험구분검증툴
 
             try
             {
+                _barcodeString = string.Empty;
+
                 if (검증하기버튼(txt파일경로.Text, 검증하기Logic))
                 {
                     Enable검증결과Group(true);
@@ -342,7 +343,21 @@ namespace _2D보험구분검증툴
 
         private void btn바코드보기_Click(object sender, EventArgs e)
         {
+            FormCollection fc = System.Windows.Forms.Application.OpenForms;
 
+            for (int i = 0; i < fc.Count; i++)
+            {
+                if (fc[i].Text == "바코드 보기")
+                    fc[i].Close();
+            }
+
+            var frm = new FrmShowBarcode(GetSelectedInsuranceType(), _barcodeString);
+            frm.Show();
+        }
+
+        private string GetSelectedInsuranceType()
+        {
+            return groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First()?.Name.Replace("rb", "");
         }
     }
 }
