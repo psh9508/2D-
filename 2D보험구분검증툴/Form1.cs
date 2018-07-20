@@ -269,35 +269,34 @@ namespace _2D보험구분검증툴
         #region Events
         private void btn검증_Click(object sender, EventArgs e)
         {
-            var 검증하기Logic = Get검증하기Logic();
-
-            var spinner = new Spinner(System.Windows.Forms.Application.OpenForms["Form1"], "검증하고 있습니다.");
-            var loadingThead = spinner.GetLoadingWorker(spinner);
-
+            BackgroundWorker loadingThead = MakeLoadingBar();
             loadingThead.RunWorkerAsync();
+
+            var 검증하기Logic = Get검증하기Logic();
 
             try
             {
                 _barcodeString = string.Empty;
 
-                if (검증하기버튼(txt파일경로.Text, 검증하기Logic))
-                {
-                    Enable검증결과Group(true);
+                var 검증결과 = 검증하기버튼(txt파일경로.Text, 검증하기Logic);
 
-                    loadingThead.Dispose();
+                Enable검증결과Group(검증결과);
 
-                    if (_오류목록.Count <= 0)
-                        MessageBox.Show(this, "검증이 완료 되었습니다.");
-                }
-                else
-                {
-                    Enable검증결과Group(false);
-                }
+                loadingThead.Dispose();
+
+                if (_오류목록.Count <= 0)
+                    MessageBox.Show(this, "검증이 완료 되었습니다.");
             }
-            finally
+            catch (Exception ex)
             {
                 loadingThead.Dispose();
             }
+        }
+
+        private static BackgroundWorker MakeLoadingBar()
+        {
+            var spinner = new Spinner(System.Windows.Forms.Application.OpenForms["Form1"], "검증하고 있습니다.");
+            return spinner.GetLoadingWorker(spinner);
         }
 
         private void btn파일선택_Click(object sender, EventArgs e)
@@ -346,10 +345,8 @@ namespace _2D보험구분검증툴
             FormCollection fc = System.Windows.Forms.Application.OpenForms;
 
             for (int i = 0; i < fc.Count; i++)
-            {
                 if (fc[i].Text == "바코드 보기")
                     fc[i].Close();
-            }
 
             var frm = new FrmShowBarcode(GetSelectedInsuranceType(), _barcodeString);
             frm.Show();

@@ -67,42 +67,28 @@ namespace UnitTests
             Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증완료));
         }
 
-        [Test]
-        public void 인증실패_1()
+        [TestCase("3332222222222222222222222222222222222222222222222222222222222222222222222222222222222222222")]
+        [TestCase("3094ㅕㅓㅐㄷ그ㅜ닝ㄻㄴㅇㄹ  ㅁㄴㅇ럼ㄴ알  미나덕333")]
+        [TestCase("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ")]
+        [TestCase("aaaaaaaaa aaaaaaaaaa ")]
+        [TestCase("22222333")]
+        [TestCase("3 33")]
+        [TestCase(" 333")]
+        [TestCase("asdf")]
+        [TestCase("3 sdf")]
+        [TestCase(null)]
+        [TestCase("                              ")]
+        [TestCase("               a                   ")]
+        [TestCase("")]
+        public void 인증실패(string inputValue)
         {
             var mock인증하기 = new Mock<I인증하기>();
-            var frm = new Form1(null, mock인증하기.Object, null);
+            var frm = new Form1(null, new 인증Logic(new 외부모듈()), null);
 
             mock인증하기.Setup(x => x.UB2DCheckAuthProcess(It.Is<string>(y => y != "99999999")))
                 .Returns(false);
 
-            frm.인증시도("333");
-            Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증실패));
-        }
-
-        [Test]
-        public void 인증실패_2()
-        {
-            var mock인증하기 = new Mock<I인증하기>();
-            var frm = new Form1(null, mock인증하기.Object, null);
-
-            mock인증하기.Setup(x => x.UB2DCheckAuthProcess(It.Is<string>(y => y != "99999999")))
-                .Returns(false);
-
-            frm.인증시도("as df ");
-            Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증실패));
-        }
-
-        [Test]
-        public void 인증실패_3()
-        {
-            var mock인증하기 = new Mock<I인증하기>();
-            var frm = new Form1(null, mock인증하기.Object, null);
-
-            mock인증하기.Setup(x => x.UB2DCheckAuthProcess(It.Is<string>(y => y != "99999999")))
-                .Returns(false);
-
-            frm.인증시도("asdf  33");
+            frm.인증시도(inputValue);
             Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증실패));
         }
     }
