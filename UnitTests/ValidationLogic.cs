@@ -14,7 +14,7 @@ namespace UnitTests
     [TestFixture]
     public class ValidationLogic
     {
-        string 정상바코드 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000
+        const string 정상바코드 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000
 FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
 PRD¿김의사¿의사¿42409
 PID¿의사랑¿7711111111111
@@ -29,7 +29,7 @@ RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
 RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
 RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿";
 
-        string 정상바코드유형2 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+        const string 정상바코드유형2 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
 FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
 PRD¿정형선¿의과¿555555
 PID¿김구번¿9003012123456
@@ -86,7 +86,7 @@ RXD¿7¿1¿1¿641800840¿¿1.000¿1¿1¿¿
 RXD¿1¿1¿0¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
 RXD¿1¿8¿0¿644501350¿¿0.330¿3¿1¿¿";
 
-        string 교부번호에러_1 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+        const string 교부번호에러_1 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
 FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
 PRD¿정형선¿의과¿555555
 PID¿김구번¿9003012123456
@@ -98,7 +98,7 @@ RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
 RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
 "; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
 
-        string 교부번호에러_2 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+        const string 교부번호에러_2 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
 FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
 PRD¿정형선¿의과¿555555
 PID¿김구번¿9003012123456
@@ -110,7 +110,7 @@ RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
 RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
 "; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
 
-        string 교부번호에러_3 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+        const string 교부번호에러_3 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
 FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
 PRD¿정형선¿의과¿555555
 PID¿김구번¿9003012123456
@@ -122,7 +122,7 @@ RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
 RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
 "; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
 
-        string 교부번호에러_4 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
+        const string 교부번호에러_4 = @"MSH¿0.8.0.0¿244¿Mediwell¿20180710005728
 FAC¿34342664¿삼성디스플레이아산부속의원¿천안시 성성동 510번지¿041)529-6888¿031)208-5999¿
 PRD¿정형선¿의과¿555555
 PID¿김구번¿9003012123456
@@ -134,7 +134,7 @@ RXD¿1¿1¿1¿650700070¿ ¿ 1.00¿3¿3¿ ¿
 RXD¿1¿1¿2¿671700110¿ ¿ 1.00¿1¿1¿ ¿
 "; // 마지막 줄에 줄바꿈이 있다.(유형2로 정의)
 
-        string MSH구분자개수부족 = @"MSH¿0.8.0.0¿001¿YSR2000
+        const string MSH구분자개수부족 = @"MSH¿0.8.0.0¿001¿YSR2000
 FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
 PRD¿김의사¿의사¿42409
 PID¿의사랑¿7711111111111
@@ -181,7 +181,7 @@ ORC¿2008111711002¿¿23¿¿7¿¿저함량 배수처방 사유♬A45900471, 사�
 DG1¿ ¿ 
 IN1¿1¿¿¿12345678¿70271724¿¿¿¿¿¿¿¿";
 
-        string MSH구분자개수부족_유형2 = @"MSH¿0.8.0.0¿001¿YSR2000
+        const string MSH구분자개수부족_유형2 = @"MSH¿0.8.0.0¿001¿YSR2000
 FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
 PRD¿김의사¿의사¿42409
 PID¿의사랑¿7711111111111
@@ -197,7 +197,7 @@ RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주�
 RXD¿1¿1¿1¿644501350¿¿0.330¿3¿1¿¿
 ";
 
-        string MSH구분자개수많음 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000¿
+        const string MSH구분자개수많음 = @"MSH¿0.8.0.0¿001¿YSR2000¿20081117090000¿
 FAC¿ys040203¿의사랑의원¿¿041-583-0123¿02-2105-5091¿
 PRD¿김의사¿의사¿42409
 PID¿의사랑¿7711111111111
@@ -304,56 +304,43 @@ RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
 RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
 RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
 
-        [Test]
-        public void Form_GetErrorData_정상바코드Test_1()
+        [TestCase(정상바코드)]
+        [TestCase(정상바코드유형2)]
+        public void Form_GetErrorData_정상바코드Test_1(string data)
         {
             var form = new _2D보험구분검증툴.Form1(null, null, null);
 
-            var errorModel = form.GetErrorData(정상바코드);
+            var errorModel = form.GetErrorData(data);
 
             Assert.That(0, Is.EqualTo(errorModel.Count));
         }
 
-        [Test]
-        public void ValidationLogic_GetErrorMessage_정상바코드Test_2()
+        [TestCase(정상바코드)]
+        [TestCase(정상바코드유형2)]
+        public void ValidationLogic_GetErrorMessage_정상바코드유형Test(string barcode)
         {
-            var data = 정상바코드.Replace("\r\n", "¿").Split('¿');
-
-            var errorModel = _2D보험구분검증툴.Logic.ValidationLogic.GetErrorMessage(data);
-
-            Assert.That(0, Is.EqualTo(errorModel.Count));
-        }
-
-        [Test]
-        public void Form_GetErrorData_정상바코드유형2Test_1()
-        {
-            var form = new _2D보험구분검증툴.Form1(null, null, null);
-
-            var errorModel = form.GetErrorData(정상바코드유형2);
-
-            Assert.That(0, Is.EqualTo(errorModel.Count));
-        }
-
-        [Test]
-        public void ValidationLogic_GetErrorMessage_정상바코드유형2Test_2()
-        {
-            if (정상바코드유형2.EndsWith("\r\n"))
+            if (barcode.EndsWith("\r\n"))
             {
-                var idx = 정상바코드유형2.LastIndexOf("\r\n");
-                정상바코드유형2 = 정상바코드유형2.Substring(0, idx);
+                var idx = barcode.LastIndexOf("\r\n");
+                barcode = barcode.Substring(0, idx);
             }
 
-            var data = 정상바코드유형2.Replace("\r\n", "¿").Split('¿');
+            var data = barcode.Replace("\r\n", "¿").Split('¿');
 
             var errorModel = _2D보험구분검증툴.Logic.ValidationLogic.GetErrorMessage(data);
-        }
 
-        [Test]
-        public void Form_GetErrorData_MSH구분자개수부족Test()
+            Assert.That(0, Is.EqualTo(errorModel.Count));
+        }
+      
+
+        [TestCase(MSH구분자개수부족)]
+        [TestCase(MSH구분자개수많음)]
+        [TestCase(MSH구분자개수부족_유형2)]
+        public void Form_GetErrorData_MSH구분자개수부족Test(string data)
         {
             var form = new _2D보험구분검증툴.Form1(null, null, null);
 
-            var errorModel = form.GetErrorData(MSH구분자개수부족_유형2);
+            var errorModel = form.GetErrorData(data);
 
             Assert.Multiple(() =>
             {
@@ -439,54 +426,15 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             });
         }
 
-        [Test]
-        public void Form_GetErrorData_교부번호_1Test()
+        [TestCase(교부번호에러_1)]
+        [TestCase(교부번호에러_2)]
+        [TestCase(교부번호에러_3)]
+        [TestCase(교부번호에러_4)]
+        public void Form_GetErrorData_교부번호_1Test(string data)
         {
             var form = new _2D보험구분검증툴.Form1(null, null, null);
 
-            var errorModel = form.GetErrorData(교부번호에러_1);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(1, Is.EqualTo(errorModel.Count));
-                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
-            });
-        }
-
-        [Test]
-        public void Form_GetErrorData_교부번호_2Test()
-        {
-            var form = new _2D보험구분검증툴.Form1(null, null, null);
-
-            var errorModel = form.GetErrorData(교부번호에러_2);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(1, Is.EqualTo(errorModel.Count));
-                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
-            });
-        }
-
-        [Test]
-        public void Form_GetErrorData_교부번호_3Test()
-        {
-            var form = new _2D보험구분검증툴.Form1(null, null, null);
-
-            var errorModel = form.GetErrorData(교부번호에러_3);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(1, Is.EqualTo(errorModel.Count));
-                Assert.That("교부번호 앞 8 자리가 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다.", Is.EqualTo(errorModel[0].메세지));
-            });
-        }
-
-        [Test]
-        public void Form_GetErrorData_교부번호_4Test()
-        {
-            var form = new _2D보험구분검증툴.Form1(null, null, null);
-
-            var errorModel = form.GetErrorData(교부번호에러_4);
+            var errorModel = form.GetErrorData(data);
 
             Assert.Multiple(() =>
             {
@@ -510,10 +458,19 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
         }
 
 
-        [Test]
-        public void ValidationLogic_GetErrorMessage_MSH구분자개수부족Test()
+        [TestCase(MSH구분자개수부족)]
+        [TestCase(MSH구분자개수많음)]
+        [TestCase(MSH구분자개수부족_유형2)]
+        public void ValidationLogic_GetErrorMessage_MSH구분자개수Test(string barcode)
         {
-            var data = MSH구분자개수부족.Replace("\r\n", "¿").Split('¿');
+            // 가장 마지막에 \r\n이 있다면 삭제해준다.
+            while (barcode.EndsWith("\r\n"))
+            {
+                var idx = barcode.LastIndexOf("\r\n");
+                barcode = barcode.Substring(0, idx);
+            }
+
+            var data = barcode.Replace("\r\n", "¿").Split('¿');
 
             var errorModel = _2D보험구분검증툴.Logic.ValidationLogic.GetErrorMessage(data);
 
@@ -524,19 +481,6 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             });
         }
 
-        [Test]
-        public void MSH구분자개수많음Test()
-        {
-            var data = MSH구분자개수많음.Replace("\r\n", "¿").Split('¿');
-
-            var errorModel = _2D보험구분검증툴.Logic.ValidationLogic.GetErrorMessage(data);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(1, Is.EqualTo(errorModel.Count));
-                Assert.That("MSH의 구분자 개수가 다릅니다.", Is.EqualTo(errorModel[0].메세지));
-            });
-        }
 
         [Test]
         public void Form_GetErrorData_MSH와ORC구분자개수부족Test()

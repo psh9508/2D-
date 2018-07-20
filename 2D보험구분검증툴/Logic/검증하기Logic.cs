@@ -132,10 +132,10 @@ namespace _2D보험구분검증툴.Logic
             return result == 1 ? decodeData.ToString() : null;
         }
 
-        public BarcodeModel GetParsedModel(string data)
-        {
-            return ParseLogic.Parse(data);
-        }
+        //public BarcodeModel GetParsedModel(string data)
+        //{
+        //    return ParseLogic.Parse(data);
+        //}
 
     }
 }
