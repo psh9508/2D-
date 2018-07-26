@@ -15,7 +15,7 @@ namespace _2D보험구분검증툴.Logic
 
         public static BarcodeModel Parse(string data)
         {
-            var splitData = data.Replace("\r\n", "¿").Split(_splitter);
+            var splitData = data.Replace("\r\n", _splitter.ToString()).Split(_splitter);
 
             return Parse(splitData);
         }
@@ -89,13 +89,15 @@ namespace _2D보험구분검증툴.Logic
                 "MSH", "FAC", "PRD", "PID", "ORC", "DG1", "IN1", "RXD"
             };
 
-            foreach (var name in names)
-            {
-                if (value.Contains(name))
-                    return true;
-            }
+            //foreach (var name in names)
+            //{
+            //    if (value.Contains(name))
+            //        return true;
+            //}
 
-            return false;
+            //return false;
+
+            return names.Any(x => x == value);
         }
 
         private static void SetData(object header, string value, int valueOrder)

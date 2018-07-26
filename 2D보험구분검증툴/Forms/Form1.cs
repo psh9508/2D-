@@ -25,10 +25,12 @@ namespace _2D보험구분검증툴
         I인증하기 _인증하기Logic;
         IForm _FormLogic;
         private string _barcodeString;
+        private const string PATH = @"C:\보험구분검증결과\";
 
         #region TEST
         public e인증결과 _e인증결과 { get; private set; }
         public List<오류목록Model> _오류목록 { get; private set; }
+        public Button _인증하기Button { get { return btn인증하기; } }
         #endregion
 
         public Form1(I검증하기 검증하기Logic, I인증하기 인증하기, IForm formLogic)
@@ -230,7 +232,8 @@ namespace _2D보험구분검증툴
 
         public void 파일선택버튼()
         {
-            _FormLogic.SetAfter파일선택((imagePath) => {
+            _FormLogic.SetAfter파일선택((imagePath) =>
+            {
                 //Is그룹박스닫힘 = true;
                 Enable검증결과Group(false);
                 txt파일경로.Text = imagePath;
@@ -248,7 +251,7 @@ namespace _2D보험구분검증툴
             btn인증하기.Visible = false;
         }
 
-        private void Show인증하기Button()
+        public void Show인증하기Button()
         {
             btn인증하기.Visible = true;
         }
@@ -353,5 +356,31 @@ namespace _2D보험구분검증툴
         {
             return groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First()?.Name.Replace("rb", "");
         }
+
+        //public void OpenFileDialog()
+        //{
+        //    using (var ofd = new OpenFileDialog() { ValidateNames = true, Multiselect = false })
+        //    {
+        //        if (ofd.ShowDialog() == DialogResult.OK)
+        //        {
+        //            //Is그룹박스닫힘 = true;
+        //            Enable검증결과Group(false);
+        //            txt파일경로.Text = ofd.FileName;
+        //        }
+        //    }
+        //}
+
+        //public void SaveResult(string insuranceName, string data)
+        //{
+        //    var fullPath = PATH + insuranceName + ".txt";
+
+        //    if (!Directory.Exists(PATH))
+        //        Directory.CreateDirectory(PATH);
+
+        //    if (File.Exists(fullPath))
+        //        File.Delete(fullPath);
+
+        //    File.WriteAllText(fullPath, data);
+        //}
     }
 }

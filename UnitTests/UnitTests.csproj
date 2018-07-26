@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormLogicTests.cs" />
     <Compile Include="ParseLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationLogic.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="보험구분Tests\산재LogicTests.cs" />
     <Compile Include="보험구분Tests\차상위1종LogicTests.cs" />
     <Compile Include="인증하기.cs" />
-    <Compile Include="파일선택하기.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

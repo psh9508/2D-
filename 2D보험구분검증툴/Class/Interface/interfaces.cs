@@ -21,9 +21,11 @@ namespace _2D보험구분검증툴.Interface
 
     public interface IForm
     {
-        void SetAfter파일선택(Action<string> action);
+        //void SetAfter파일선택(Action<string> action);
         void OpenFileDialog();
         void SaveResult(string insuranceName, string data);
+        void Show인증하기Button();
+        void SetAfter파일선택(Action<string> action);
     }
 
     public interface I인증하기

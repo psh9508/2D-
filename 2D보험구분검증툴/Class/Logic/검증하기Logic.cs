@@ -125,7 +125,7 @@ namespace _2D보험구분검증툴.Logic
             if (string.IsNullOrEmpty(data))
                 throw new MyLogicException("바코드 이미지에서 데이터를 가져오지 못함.");
 
-            StringBuilder decodeData = new StringBuilder(1000000);
+            StringBuilder decodeData = new StringBuilder(2048);
 
             int result = _외부모듈.CallUB2DDecode(data, decodeData);
 

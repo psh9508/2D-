@@ -54,6 +54,17 @@ namespace UnitTests
             Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증완료));
         }
 
+
+        [Category("MessageBox")]
+        [Test]
+        public void 올바르게인증되는경우_파라미터99999999로넣었을경우_메세지박스()
+        {
+            var frm = new Form1(null, new 인증Logic(new 외부모듈()), null);
+
+            frm.인증시도("99999999");
+            Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증완료));
+        }
+
         [Test]
         public void 올바르게인증되는경우_파라미터안넣고기본파라미터로했을경우()
         {
@@ -82,11 +93,7 @@ namespace UnitTests
         [TestCase("")]
         public void 인증실패(string inputValue)
         {
-            var mock인증하기 = new Mock<I인증하기>();
             var frm = new Form1(null, new 인증Logic(new 외부모듈()), null);
-
-            mock인증하기.Setup(x => x.UB2DCheckAuthProcess(It.Is<string>(y => y != "99999999")))
-                .Returns(false);
 
             frm.인증시도(inputValue);
             Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증실패));

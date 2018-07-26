@@ -39,5 +39,10 @@ namespace _2D보험구분검증툴.Logic
 
             File.WriteAllText(fullPath, data);
         }
+
+        public void Show인증하기Button()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

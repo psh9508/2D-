@@ -161,10 +161,12 @@ namespace _2D보험구분검증툴.Logic
 
             for (int i = 0;  i < splitedData.Count(); i++)
             {
-                if (!ParseLogic.IsHeader(splitedData[i]))
+                bool isHeader = ParseLogic.IsHeader(splitedData[i]);
+
+                if (!isHeader)
                     nowSpliterNum++;
 
-                if (IsLastElement(splitedData, i) || ParseLogic.IsHeader(splitedData[i]))
+                if (IsLastElement(splitedData, i) || isHeader)
                 {
                     if (splitedData[i] != "MSH")
                     {

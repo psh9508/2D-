@@ -189,6 +189,8 @@
     <None Include="Resources\spinner.gif" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ref\MessagingToolkit.QRCode.dll" />
+    <EmbeddedResource Include="ref\TouchlessLib.dll" />
     <Content Include="UBEditor.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
