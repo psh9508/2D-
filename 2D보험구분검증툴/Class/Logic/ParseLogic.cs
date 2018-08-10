@@ -208,6 +208,7 @@ namespace _2D보험구분검증툴.Logic
         {
             return itmes.Count() - 1;
         }
+
     }
 }
 

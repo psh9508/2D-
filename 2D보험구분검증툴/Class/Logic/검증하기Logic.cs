@@ -130,6 +130,7 @@ namespace _2D보험구분검증툴.Logic
             int result = _외부모듈.CallUB2DDecode(data, decodeData);
 
             return result == 1 ? decodeData.ToString() : null;
+
         }
 
         //public BarcodeModel GetParsedModel(string data)

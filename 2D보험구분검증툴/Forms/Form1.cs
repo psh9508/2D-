@@ -89,6 +89,13 @@ namespace _2D보험구분검증툴
             try
             {
                 _barcodeString = _검증하기Logic.Get암호화해제Data(path);
+
+                if (ValidationLogic.Has줄바꿈Error(_barcodeString))
+                {
+                    MessageBox.Show(@"헤더와 헤더 사이에 [\r\n]로 이루어진 줄바꿈이 없습니다.");
+                    return false;
+                }
+
                 var parsedModel = ParseLogic.Parse(_barcodeString);
 
                 DisplayData(parsedModel);
