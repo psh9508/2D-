@@ -199,7 +199,6 @@ namespace _2D보험구분검증툴.Logic
         public static 오류목록Model Get줄바꿈오류(string[] splitedData)
         {
             오류목록Model retv = null;
-            bool has줄바꿈 = false;
 
             foreach (var item in splitedData)
             {
@@ -214,19 +213,6 @@ namespace _2D보험구분검증툴.Logic
 
                     break;
                 }
-
-                if (item.Contains("\r\n") || item.Contains("\r") || item.Contains("\n"))
-                    has줄바꿈 = true;
-            }
-
-            if(!has줄바꿈)
-            {
-                retv = new 오류목록Model
-                {
-                    No = _errorCnt++,
-                    유형 = "줄바꿈 문자 에러",
-                    메세지 = @"헤더와 헤더사이에 줄바꿈문자가 없습니다. [\r\n]문자를 이용해 줄바꿈을 해주시기 바랍니다.",
-                };
             }
 
             return retv;
@@ -234,9 +220,7 @@ namespace _2D보험구분검증툴.Logic
 
         public static bool Has줄바꿈Error(string barcodeString)
         {
-            var splitData = barcodeString.Replace("\r\n", _splitter.ToString()).Split(_splitter.ToCharArray());
-
-            return Get줄바꿈오류(splitData) == null ? false : true;
+            return barcodeString.Split("\r\n".ToCharArray()).Count() >= 8 ? false : true;
         }
 
         private static int Get구분자개수(string headerName)

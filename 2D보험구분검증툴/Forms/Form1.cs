@@ -291,7 +291,7 @@ namespace _2D보험구분검증툴
 
                 loadingThead.Dispose();
 
-                if (_오류목록.Count <= 0)
+                if (_오류목록.Count <= 0 && 검증결과)
                     MessageBox.Show(this, "검증이 완료 되었습니다.");
             }
             catch (Exception ex)
