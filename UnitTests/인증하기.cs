@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using static _2D보험구분검증툴.Test.TestEnum;
 
 namespace UnitTests
@@ -32,7 +33,8 @@ namespace UnitTests
         public void DLL이없을경우()
         {
             var mock인증하기 = new Mock<I인증하기>();
-            var frm = new Form1(null, mock인증하기.Object, null);
+            var formLogic = new Mock<IForm>();
+            var frm = new Form1(null, mock인증하기.Object, formLogic.Object);
 
             mock인증하기.Setup(x => x.UB2DCheckAuthProcess(It.IsAny<string>()))
                 .Throws<DllNotFoundException>();
@@ -93,7 +95,9 @@ namespace UnitTests
         [TestCase("")]
         public void 인증실패(string inputValue)
         {
-            var frm = new Form1(null, new 인증Logic(new 외부모듈()), null);
+            var formLogic = new Mock<IForm>();
+
+            var frm = new Form1(null, new 인증Logic(new 외부모듈()), formLogic.Object);
 
             frm.인증시도(inputValue);
             Assert.That(frm._e인증결과, Is.EqualTo(e인증결과.인증실패));

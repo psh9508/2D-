@@ -16,6 +16,7 @@ using UB2DBarcodeVerifier;
 using _2D보험구분검증툴.Helper;
 using static _2D보험구분검증툴.Test.TestEnum;
 using static System.Net.Mime.MediaTypeNames;
+using _2D보험구분검증툴.Class.Logic.보험구분Logic;
 
 namespace _2D보험구분검증툴
 {
@@ -70,14 +71,16 @@ namespace _2D보험구분검증툴
                 {
                     _e인증결과 = e인증결과.인증실패;
                     MessageHelper.ShowMessageBox("인증에 실패했습니다.\n\n서버에 문제가 있거나 인터넷 연결에 문제가 있을 수 있습니다.\n\n잠시 후 다시 시도해 주시기 바랍니다.");
-                    Show인증하기Button();
+                    _FormLogic.Show인증하기Button(btn인증하기);
+                    //Show인증하기Button();
                 }
             }
             catch (Exception ex)
             {
                 _e인증결과 = e인증결과.DLL없음;
                 MessageHelper.ShowMessageBox(ex.Message);
-                Show인증하기Button();
+                _FormLogic.Show인증하기Button(btn인증하기);
+                //Show인증하기Button();
             }
         }
 
@@ -92,7 +95,7 @@ namespace _2D보험구분검증툴
 
                 if (ValidationLogic.Has줄바꿈Error(_barcodeString))
                 {
-                    MessageBox.Show(@"헤더와 헤더 사이에 [\r\n]로 이루어진 줄바꿈이 없습니다.");
+                    MessageHelper.ShowMessageBox(@"헤더와 헤더 사이에 [\r\n]로 이루어진 줄바꿈이 없습니다.");
                     return false;
                 }
 
@@ -146,8 +149,8 @@ namespace _2D보험구분검증툴
                 return new 자동차보험Logic();
             else if (rb산재.Checked)
                 return new 산재Logic();
-            //else if(rb보훈국비.Checked)
-            //    return new 보훈
+            else if (rb보훈국비.Checked)
+                return new 보훈국비Logic();
             else
                 return new 국민공단Logic(); // UI 기본 값이 이 값이라서 default로 해놓음.
         }
@@ -258,10 +261,10 @@ namespace _2D보험구분검증툴
             btn인증하기.Visible = false;
         }
 
-        public void Show인증하기Button()
-        {
-            btn인증하기.Visible = true;
-        }
+        //public void Show인증하기Button()
+        //{
+        //    btn인증하기.Visible = true;
+        //}
 
         private void Enable검증결과Group(bool isEnable)
         {
@@ -297,6 +300,7 @@ namespace _2D보험구분검증툴
             catch (Exception ex)
             {
                 loadingThead.Dispose();
+                //MessageHelper.ShowMessageBox(ex.Message);
             }
         }
 

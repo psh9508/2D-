@@ -40,9 +40,9 @@ namespace _2D보험구분검증툴.Logic
             File.WriteAllText(fullPath, data);
         }
 
-        public void Show인증하기Button()
+        public void Show인증하기Button(Button btn인증하기)
         {
-            throw new NotImplementedException();
+            btn인증하기.Visible = true;
         }
     }
 }

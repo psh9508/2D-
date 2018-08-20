@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace UnitTests
 {
@@ -31,7 +32,6 @@ namespace UnitTests
         {
             var mock인증하기 = new Mock<I인증하기>();
             var mockFormLogic = Mock.Of<IForm>();
-            //var mockFormLogic = new Mock<IForm>();
 
             mock인증하기.Setup(x => x.UB2DCheckAuthProcess(It.IsAny<string>()))
                 .Returns(false);
@@ -40,7 +40,7 @@ namespace UnitTests
 
             form.인증시도("x");
 
-            Mock.Get(mockFormLogic).Verify(x => x.Show인증하기Button(), Times.Once);
+            Mock.Get(mockFormLogic).Verify(x => x.Show인증하기Button(It.IsAny<Button>()), Times.Once);
         }
     }
 }

@@ -78,5 +78,6 @@ namespace UnitTests
 
             Assert.AreEqual("입력하신 경로에 파일이 존재하지 않습니다.", 검증하기.ErrorMessage);
         }
+        
     }
 }

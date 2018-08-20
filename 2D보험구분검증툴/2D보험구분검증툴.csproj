@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Class\HeaderAttribute.cs" />
     <Compile Include="Class\Helper\MessageHelper.cs" />
+    <Compile Include="Class\Logic\보험구분Logic\보훈국비Logic.cs" />
     <Compile Include="Class\Model.cs" />
     <Compile Include="Class\MyException.cs" />
     <Compile Include="Forms\Form1.cs">

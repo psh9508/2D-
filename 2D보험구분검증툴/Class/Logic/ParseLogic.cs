@@ -89,14 +89,6 @@ namespace _2D보험구분검증툴.Logic
                 "MSH", "FAC", "PRD", "PID", "ORC", "DG1", "IN1", "RXD"
             };
 
-            //foreach (var name in names)
-            //{
-            //    if (value.Contains(name))
-            //        return true;
-            //}
-
-            //return false;
-
             return names.Any(x => x == value);
         }
 
@@ -108,19 +100,6 @@ namespace _2D보험구분검증툴.Logic
                 return;
 
             props[valueOrder].SetValue(header, value.Trim(), BindingFlags.SetProperty, null, null, null);
-
-            #region Order가지고 넣기
-            //for (int i = 0; i < props.Count(); i++)
-            //{
-            //    var order = ((ValueAttribute)(props[i].GetCustomAttributes(true)[0])).Order;
-
-            //    if (valueOrder == order) // 값의 순서를 비교해서 올바른 곳에 넣어줄 수 있도록 한다.
-            //    {
-            //        props[i].SetValue(header, value.Trim(), BindingFlags.SetProperty, null, null, null);
-            //        return;
-            //    }
-            //}
-            #endregion
         }
 
         public static IEnumerable<string> GetAllPropertiesValue(BarcodeModel data)

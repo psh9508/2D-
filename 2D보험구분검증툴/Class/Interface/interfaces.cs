@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace _2D보험구분검증툴.Interface
 {
@@ -24,7 +25,7 @@ namespace _2D보험구분검증툴.Interface
         //void SetAfter파일선택(Action<string> action);
         void OpenFileDialog();
         void SaveResult(string insuranceName, string data);
-        void Show인증하기Button();
+        void Show인증하기Button(Button btn인증하기);
         void SetAfter파일선택(Action<string> action);
     }
 

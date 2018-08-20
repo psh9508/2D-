@@ -1,4 +1,5 @@
-﻿using _2D보험구분검증툴.Interface;
+﻿using _2D보험구분검증툴.Class;
+using _2D보험구분검증툴.Interface;
 using _2D보험구분검증툴.Logic;
 using _2D보험구분검증툴.Logic.보험구분Logic;
 using Moq;
@@ -303,6 +304,21 @@ RXD¿1¿1¿1¿642403700¿약품명¿0.330¿3¿1¿¿
 RXD¿1¿1¿2¿641800840¿¿1.000¿1¿1¿¿
 RXD¿1¿1¿2¿693200860¿¿1.000¿1¿1¿odw¿첫주는하루한두번두째주부터는1주에2번사용
 RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
+
+        string 줄바꿈비정상 = @"MSH¿0.8.0.0¿161¿PHOENIX¿20180810091319FAC¿10240075¿지누스¿서울 송파구 위례성대로 34 (방이동, 지산빌딩) 123-123¿010-411-1110¿02-411-1199¿lej @hyny.co.krPRD¿의사¿의사¿12345PID¿테스트¿1111111111111ORC¿2018081000005¿¿1¿¿3¿TID - 1일 3회 식후 30분에 복용하십시오¿DG1¿J00¿IN1¿1¿1¿¿123456789¿¿¿¿¿¿¿¿¿RXD¿1¿1¿1¿644900310¿¿0.333¿3¿1¿TID¿";
+
+
+        [SetUp]
+        public void SetUp()
+        {
+            MessageHelper.IsTest = true;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            MessageHelper.IsTest = false;
+        }
 
         [TestCase(정상바코드)]
         [TestCase(정상바코드유형2)]
@@ -632,5 +648,22 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
             #endregion
         }
 
+        [Test]
+        public void Has줄바꿈Error()
+        {
+            var mock검증하기 = new Mock<I검증하기>();
+
+            mock검증하기.Setup(x => x.IsValid(It.IsAny<string>()))
+                .Returns(true);
+
+            mock검증하기.Setup(x => x.Get암호화해제Data(It.IsAny<string>()))
+                .Returns(줄바꿈비정상);
+
+            var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, null, new FormLogic());
+
+            var result = form.검증하기버튼("", null);
+
+            Assert.That(false, Is.EqualTo(result));
+        }
     }
 }
