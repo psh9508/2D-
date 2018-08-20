@@ -651,6 +651,7 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
         [Test]
         public void Has줄바꿈Error()
         {
+            #region Arrange
             var mock검증하기 = new Mock<I검증하기>();
 
             mock검증하기.Setup(x => x.IsValid(It.IsAny<string>()))
@@ -658,12 +659,16 @@ RXD¿1¿1¿1¿644501350¿약품명¿0.330¿3¿1¿¿";
 
             mock검증하기.Setup(x => x.Get암호화해제Data(It.IsAny<string>()))
                 .Returns(줄바꿈비정상);
+            #endregion
 
+            #region Act
             var form = new _2D보험구분검증툴.Form1(mock검증하기.Object, null, new FormLogic());
-
             var result = form.검증하기버튼("", null);
+            #endregion
 
-            Assert.That(false, Is.EqualTo(result));
+            #region Assert
+            Assert.That(false, Is.EqualTo(result)); 
+            #endregion
         }
     }
 }

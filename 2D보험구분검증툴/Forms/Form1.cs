@@ -91,6 +91,7 @@ namespace _2D보험구분검증툴
 
             try
             {
+                var originalBarcodeString = _검증하기Logic.Get바코드Data(path);
                 _barcodeString = _검증하기Logic.Get암호화해제Data(path);
 
                 if (ValidationLogic.Has줄바꿈Error(_barcodeString))
@@ -117,7 +118,7 @@ namespace _2D보험구분검증툴
                     var selectedRadioButtonName = GetSelectedInsuranceType();
 
                     if(!string.IsNullOrEmpty(selectedRadioButtonName))
-                        _FormLogic.SaveResult(selectedRadioButtonName, _barcodeString);
+                        _FormLogic.SaveResult(selectedRadioButtonName, originalBarcodeString);
                 }
 
                 return parsedModel == null ? false : true;
