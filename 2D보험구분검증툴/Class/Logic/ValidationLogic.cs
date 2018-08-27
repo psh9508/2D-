@@ -220,7 +220,46 @@ namespace _2D보험구분검증툴.Logic
 
         public static bool Has줄바꿈Error(string barcodeString)
         {
-            return barcodeString.Split("\r\n".ToCharArray()).Count() >= 8 ? false : true;
+            return barcodeString.Split(new string[] { "\r\n" }, System.StringSplitOptions.RemoveEmptyEntries).Count() >= 8 ? false : true;
+        }
+
+        public static bool HasAllProperHeaders(string barcodeString, out string NoHeaders)
+        {
+            barcodeString = barcodeString.Replace("\r\n", _splitter);
+
+            var splitedData = barcodeString.Split(_splitter.ToCharArray());
+
+            bool[] headers = new bool[Enum.GetValues(typeof(eHeader)).Length];
+
+            foreach (var item in splitedData)
+            {
+                if (item == "MSH")
+                    headers[0] = true;
+                else if (item == "FAC")
+                    headers[1] = true;
+                else if (item == "PRD")
+                    headers[2] = true;
+                else if (item == "PID")
+                    headers[3] = true;
+                else if (item == "ORC")
+                    headers[4] = true;
+                else if (item == "DG1")
+                    headers[5] = true;
+                else if (item == "IN1")
+                    headers[6] = true;
+                else if (item == "RXD")
+                    headers[7] = true;
+            }
+
+            var noHeaderList = new List<string>();
+
+            for (int i = 0; i < headers.Count(); i++)
+                if(!headers[i])
+                    noHeaderList.Add(((eHeader)i).ToString());
+
+            NoHeaders = string.Join(", ", noHeaderList.ToArray());
+
+            return headers.All(x => x == true);
         }
 
         private static int Get구분자개수(string headerName)

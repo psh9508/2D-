@@ -97,10 +97,19 @@
     <Reference Include="TouchlessLib">
       <HintPath>..\..\QRCode_2\lib\TouchlessLib.dll</HintPath>
     </Reference>
+    <Reference Include="zxing.ce2.0">
+      <HintPath>..\zxing.ce2.0.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Enums.cs" />
     <Compile Include="Class\HeaderAttribute.cs" />
     <Compile Include="Class\Helper\MessageHelper.cs" />
+    <Compile Include="Class\Logic\DecryptLogic\DecrptyByString.cs" />
+    <Compile Include="Class\Logic\DecryptLogic\DecryptByFile.cs" />
+    <Compile Include="Class\Logic\DecryptLogic\IDecryptable.cs" />
+    <Compile Include="Class\Logic\QRCode\검증하기LogicByFile.cs" />
+    <Compile Include="Class\Logic\QRCode\검증하기LogicByString.cs" />
     <Compile Include="Class\Logic\보험구분Logic\보훈국비Logic.cs" />
     <Compile Include="Class\Model.cs" />
     <Compile Include="Class\MyException.cs" />
@@ -127,7 +136,7 @@
     <Compile Include="Class\Interface\interfaces.cs" />
     <Compile Include="Class\Logic\ParseLogic.cs" />
     <Compile Include="Class\Logic\ValidationLogic.cs" />
-    <Compile Include="Class\Logic\검증하기Logic.cs" />
+    <Compile Include="Class\Logic\QRCode\Base검증하기Logic.cs" />
     <Compile Include="Class\Logic\보험구분Logic\공무원상해Logic.cs" />
     <Compile Include="Class\Logic\보험구분Logic\국민공단Logic.cs" />
     <Compile Include="Class\Logic\보험구분Logic\산재Logic.cs" />
@@ -194,6 +203,7 @@
     <EmbeddedResource Include="ref\TouchlessLib.dll" />
     <Content Include="UBEditor.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

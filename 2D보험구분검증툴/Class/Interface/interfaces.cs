@@ -11,7 +11,7 @@ namespace _2D보험구분검증툴.Interface
     {
         string ErrorMessage { get; set; }
         string Get바코드Data(string imagePath);
-        string Get암호화해제Data(string 암호화된Data);
+        //string Get암호화해제Data(string 암호화된Data);
         bool IsValid(string imagePath);
         //BarcodeModel GetParsedModel(string imagePath);
         bool Has파일경로(string imagePath);

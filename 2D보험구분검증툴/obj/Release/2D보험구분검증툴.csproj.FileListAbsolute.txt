@@ -2,7 +2,6 @@ C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\bin\Release\2D보험구분검증툴.pdb
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\bin\Release\MessagingToolkit.QRCode.dll
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\bin\Release\TouchlessLib.dll
-C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\2D보험구분검증툴.csprojResolveAssemblyReference.cache
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\_2D보험구분검증툴.Form1.resources
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\UB2DBarcodeVerifier.FrmHelp.resources
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\_2D보험구분검증툴.FrmShowBarcode.resources
@@ -11,3 +10,4 @@ C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\2D보험구분검증툴.csproj.GenerateResource.Cache
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\2D보험구분검증툴.exe
 C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\2D보험구분검증툴.pdb
+C:\Users\psh9508\Documents\Visual Studio 2015\Projects\2D보험구분검증툴\2D보험구분검증툴\obj\Release\2D보험구분검증툴.csprojResolveAssemblyReference.cache

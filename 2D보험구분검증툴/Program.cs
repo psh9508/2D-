@@ -17,10 +17,10 @@ namespace _2D보험구분검증툴
         static void Main()
         {
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(ResolveAssembly);
-
+            
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new 검증하기Logic(new 외부모듈()), new 인증Logic(new 외부모듈()), new FormLogic()));
+            Application.SetCompatibleTextRenderingDefault(false);                        
+            Application.Run(new Form1(new 인증Logic(new 외부모듈()), new FormLogic()));
         }
 
         static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
@@ -40,7 +40,9 @@ namespace _2D보험구분검증툴
                 var resourceName = resources.First();
                 using (Stream stream = thisAssembly.GetManifestResourceStream(resourceName))
                 {
-                    if (stream == null) return null;
+                    if (stream == null)
+                        return null;
+
                     var block = new byte[stream.Length];
                     stream.Read(block, 0, block.Length);
                     return Assembly.Load(block);

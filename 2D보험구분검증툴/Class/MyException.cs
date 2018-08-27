@@ -23,7 +23,7 @@ namespace _2D보험구분검증툴.Class
 
     }
 
-    class MyLogicException : Exception
+    public class MyLogicException : Exception
     {
         public string exceptionMessage;
 
@@ -32,4 +32,5 @@ namespace _2D보험구분검증툴.Class
             exceptionMessage = message;
         }
     }
+
 }

@@ -13,7 +13,6 @@ namespace _2D보험구분검증툴
     {
         //public Form _parentForm { get; set; }
         private readonly Form _parentForm;
-        private readonly string _message;
 
         public Spinner(Form parentForm, string message = "서버와 통신중입니다.")
         {
@@ -44,7 +43,6 @@ namespace _2D보험구분검증툴
             worker.DoWork += new DoWorkEventHandler((object o, DoWorkEventArgs eargs) => {
                 loadingImg.StartPosition = FormStartPosition.Manual;
                 //loadingImg.StartPosition = FormStartPosition.CenterParent;
-                //loadingImg.StartPosition = FormStartPosition.CenterScreen;
                 //loadingImg._parentForm = parentFrom;
                 loadingImg.TopMost = true;
                 loadingImg.ShowFrom();

@@ -17,6 +17,8 @@ using _2D보험구분검증툴.Helper;
 using static _2D보험구분검증툴.Test.TestEnum;
 using static System.Net.Mime.MediaTypeNames;
 using _2D보험구분검증툴.Class.Logic.보험구분Logic;
+using _2D보험구분검증툴.Class.Logic.DecryptLogic;
+using _2D보험구분검증툴.Class.Logic.QRCode;
 
 namespace _2D보험구분검증툴
 {
@@ -34,11 +36,11 @@ namespace _2D보험구분검증툴
         public Button _인증하기Button { get { return btn인증하기; } }
         #endregion
 
-        public Form1(I검증하기 검증하기Logic, I인증하기 인증하기, IForm formLogic)
+        public Form1(I인증하기 인증하기, IForm formLogic)
         {
             InitializeComponent();
 
-            _검증하기Logic = 검증하기Logic;
+            //_검증하기Logic = 검증하기Logic;
             _인증하기Logic = 인증하기;
             _FormLogic = formLogic;
 
@@ -56,6 +58,10 @@ namespace _2D보험구분검증툴
         {
             this.TopMost = false;
             groupBox3.Enabled = false;
+            groupBox6.Enabled = false;
+
+            cbo보험구분테스트.SelectedIndex = 0;
+            cbo약품구분테스트.SelectedIndex = 0;
         }
 
         public void 인증시도(string 요양기관기호 = "99999999")
@@ -72,7 +78,6 @@ namespace _2D보험구분검증툴
                     _e인증결과 = e인증결과.인증실패;
                     MessageHelper.ShowMessageBox("인증에 실패했습니다.\n\n서버에 문제가 있거나 인터넷 연결에 문제가 있을 수 있습니다.\n\n잠시 후 다시 시도해 주시기 바랍니다.");
                     _FormLogic.Show인증하기Button(btn인증하기);
-                    //Show인증하기Button();
                 }
             }
             catch (Exception ex)
@@ -80,26 +85,29 @@ namespace _2D보험구분검증툴
                 _e인증결과 = e인증결과.DLL없음;
                 MessageHelper.ShowMessageBox(ex.Message);
                 _FormLogic.Show인증하기Button(btn인증하기);
-                //Show인증하기Button();
             }
         }
 
-        public bool 검증하기버튼(string path, I보험구분검증 보험구분검증Logic)
+        public bool 검증하기버튼(string path, Base검증하기Logic 검증하기Logic, I보험구분검증 보험구분검증Logic)
         {
-            if (!_검증하기Logic.IsValid(path))
+            if(!검증하기Logic.IsValid())
                 return false;
+
+            var originalBarcodeString = 검증하기Logic.GetDecryptedString();
 
             try
             {
-                var originalBarcodeString = _검증하기Logic.Get바코드Data(path);
-                _barcodeString = _검증하기Logic.Get암호화해제Data(path);
+                _barcodeString = GetDecryptedString(검증하기Logic);
+                BasicLayoutTest(_barcodeString);
+            }
+            catch (MyLogicException ex)
+            {
+                MessageHelper.ShowMessageBox(ex.exceptionMessage);
+                return false;
+            }
 
-                if (ValidationLogic.Has줄바꿈Error(_barcodeString))
-                {
-                    MessageHelper.ShowMessageBox(@"헤더와 헤더 사이에 [\r\n]로 이루어진 줄바꿈이 없습니다.");
-                    return false;
-                }
-
+            try
+            {
                 var parsedModel = ParseLogic.Parse(_barcodeString);
 
                 DisplayData(parsedModel);
@@ -115,46 +123,71 @@ namespace _2D보험구분검증툴
 
                 if (_오류목록.Count <= 0)
                 {
-                    var selectedRadioButtonName = GetSelectedInsuranceType();
+                    var selectedInsuranceTypeName = GetSelectedInsuranceType();
 
-                    if(!string.IsNullOrEmpty(selectedRadioButtonName))
-                        _FormLogic.SaveResult(selectedRadioButtonName, originalBarcodeString);
+                    if(!string.IsNullOrEmpty(selectedInsuranceTypeName))
+                        _FormLogic.SaveResult(selectedInsuranceTypeName, originalBarcodeString);
                 }
 
                 return parsedModel == null ? false : true;
             }
             catch (MyLogicException ex)
             {
-                MessageHelper.ShowMessageBox(ex.Message);
+                MessageHelper.ShowMessageBox(ex.exceptionMessage);
                 return false;
             }
+           
         }
 
-        private I보험구분검증 Get검증하기Logic()
+        public string GetDecryptedString(IDecryptable decryptLogic)
         {
-            if (rb국민공단.Checked)
+            return decryptLogic.GetDecryptedString();
+        }
+
+        public void BasicLayoutTest(string barcodeString)
+        {
+            string noHeaders = string.Empty;
+
+            if (ValidationLogic.Has줄바꿈Error(barcodeString))
+                throw new MyLogicException(@"헤더와 헤더 사이에[\r\n]로 이루어진 줄바꿈이 없습니다.");
+            else if (!ValidationLogic.HasAllProperHeaders(barcodeString, out noHeaders))
+                throw new MyLogicException($@"{noHeaders}헤더가 존재하지 않습니다. 헤더의 이름과 존재유무를 확인해주세요.");
+        }
+
+        private I보험구분검증 Get보험검증Logic()
+        {
+            var 선택된보험구분 = cbo보험구분테스트.Text;
+
+            if (선택된보험구분 == "국민공단")
                 return new 국민공단Logic();
-            else if (rb차상위1.Checked)
+            else if (선택된보험구분 == "차상위1")
                 return new 차상위1Logic();
-            else if (rb차상위2.Checked)
+            else if (선택된보험구분 == "차상위2")
                 return new 차상위2Logic();
-            else if (rb차상위F.Checked)
+            else if (선택된보험구분 == "차상위F")
                 return new 차상위FLogic();
-            else if (rb의료급여1종.Checked)
+            else if (선택된보험구분 == "의료급여1종")
                 return new 의료급여1종Logic();
-            else if (rb의료급여2종.Checked)
+            else if (선택된보험구분 == "의료급여2종")
                 return new 의료급여2종Logic();
-            else if (rb공무원상해.Checked)
+            else if (선택된보험구분 == "공무원상해")
                 return new 공무원상해Logic();
-            else if (rb자동차보험.Checked)
+            else if (선택된보험구분 == "자동차보험")
                 return new 자동차보험Logic();
-            else if (rb산재.Checked)
+            else if (선택된보험구분 == "산재")
                 return new 산재Logic();
-            else if (rb보훈국비.Checked)
-                return new 보훈국비Logic();
             else
                 return new 국민공단Logic(); // UI 기본 값이 이 값이라서 default로 해놓음.
         }
+
+        private Base검증하기Logic Get검증하기Logic()
+        {
+            if (txt파일경로.Enabled == false && !string.IsNullOrWhiteSpace(txt직접입력.Text))
+                return new 검증하기LogicByString(txt직접입력.Text, new 외부모듈());
+
+            return new 검증하기LogicByFile(txt파일경로.Text, new 외부모듈());
+        }
+
 
         private void DisplayData(BarcodeModel parsedModel)
         {
@@ -262,11 +295,6 @@ namespace _2D보험구분검증툴
             btn인증하기.Visible = false;
         }
 
-        //public void Show인증하기Button()
-        //{
-        //    btn인증하기.Visible = true;
-        //}
-
         private void Enable검증결과Group(bool isEnable)
         {
             tabControl1.TabIndex = 0;
@@ -283,13 +311,14 @@ namespace _2D보험구분검증툴
             BackgroundWorker loadingThead = MakeLoadingBar();
             loadingThead.RunWorkerAsync();
 
+            _barcodeString = string.Empty;
+
+            var 보험검증Logic = Get보험검증Logic();
             var 검증하기Logic = Get검증하기Logic();
 
             try
             {
-                _barcodeString = string.Empty;
-
-                var 검증결과 = 검증하기버튼(txt파일경로.Text, 검증하기Logic);
+                var 검증결과 = 검증하기버튼(txt파일경로.Text, 검증하기Logic, 보험검증Logic);
 
                 Enable검증결과Group(검증결과);
 
@@ -297,10 +326,13 @@ namespace _2D보험구분검증툴
 
                 if (_오류목록.Count <= 0 && 검증결과)
                     MessageBox.Show(this, "검증이 완료 되었습니다.");
+                else
+                    throw new MyLogicException("검증에 실패했습니다.");
             }
-            catch (Exception ex)
+            catch (MyLogicException ex)
             {
                 loadingThead.Dispose();
+                MessageHelper.ShowMessageBox(ex.exceptionMessage);
                 //MessageHelper.ShowMessageBox(ex.Message);
             }
         }
@@ -366,7 +398,19 @@ namespace _2D보험구분검증툴
 
         private string GetSelectedInsuranceType()
         {
-            return groupBox2.Controls.OfType<RadioButton>().Where(x => x.Checked).First()?.Name.Replace("rb", "");
+            return cbo보험구분테스트.Text;
+        }
+
+        private void rb약품구분테스트_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBox6.Enabled = rb약품구분테스트.Checked;
+            rb보험구분테스트.Checked = !rb약품구분테스트.Checked;
+        }
+
+        private void rb보험구분테스트_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = rb보험구분테스트.Checked;
+            rb약품구분테스트.Checked = !rb보험구분테스트.Checked;
         }
 
         //public void OpenFileDialog()
