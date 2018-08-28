@@ -79,6 +79,7 @@
     <Compile Include="ParseLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationLogicTests.cs" />
+    <Compile Include="검증하기LogicByFileTests.cs" />
     <Compile Include="검증하기버튼.cs" />
     <Compile Include="보험구분Tests\국민공단LogicTests.cs" />
     <Compile Include="보험구분Tests\산재LogicTests.cs" />

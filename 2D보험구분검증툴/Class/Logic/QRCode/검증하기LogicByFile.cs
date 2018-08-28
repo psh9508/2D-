@@ -1,5 +1,4 @@
-﻿using _2D보험구분검증툴.Class.Logic.DecryptLogic;
-using _2D보험구분검증툴.Interface;
+﻿using _2D보험구분검증툴.Interface;
 using _2D보험구분검증툴.Logic;
 using MessagingToolkit.QRCode.ExceptionHandler;
 using System;
@@ -48,12 +47,12 @@ namespace _2D보험구분검증툴.Class.Logic.QRCode
                 ErrorMessage = "입력하신 경로에 파일이 QR코드가 아닙니다.";
         }
 
-        private bool Has파일경로(string imagePath)
+        public bool Has파일경로(string imagePath)
         {
             return !string.IsNullOrWhiteSpace(imagePath);
         }
 
-        private bool Is파일존재(string imagePath)
+        public bool Is파일존재(string imagePath)
         {
             return File.Exists(imagePath);
         }
@@ -81,6 +80,8 @@ namespace _2D보험구분검증툴.Class.Logic.QRCode
 
         private bool IsValidVersion(string imagePath)
         {
+            var errorMessage = "이용가능한 버전의 QR코드가 아닙니다.\n\n바코드를 직접 읽으신 후 그 값을 직접입력 창을 통해 입력해보시기 바랍니다.";
+
             try
             {
                 var barcodeBitmap = (Bitmap)Image.FromFile(imagePath);
@@ -94,11 +95,11 @@ namespace _2D보험구분검증툴.Class.Logic.QRCode
             }
             catch (InvalidVersionException ex)
             {
-                return false;
+                throw new InvalidVersionException(errorMessage);
             }
             catch (Exception ex)
             {
-                // 버전 이외의 에러는 다른 곳에서 처리한다.
+                // 버전에러 이외의 에러는 다른 곳에서 처리한다.
                 return true;
             }
         }

@@ -105,9 +105,7 @@
     <Compile Include="Class\Enums.cs" />
     <Compile Include="Class\HeaderAttribute.cs" />
     <Compile Include="Class\Helper\MessageHelper.cs" />
-    <Compile Include="Class\Logic\DecryptLogic\DecrptyByString.cs" />
-    <Compile Include="Class\Logic\DecryptLogic\DecryptByFile.cs" />
-    <Compile Include="Class\Logic\DecryptLogic\IDecryptable.cs" />
+    <Compile Include="Class\Logic\QRCode\Interface\IDecryptable.cs" />
     <Compile Include="Class\Logic\QRCode\검증하기LogicByFile.cs" />
     <Compile Include="Class\Logic\QRCode\검증하기LogicByString.cs" />
     <Compile Include="Class\Logic\보험구분Logic\보훈국비Logic.cs" />

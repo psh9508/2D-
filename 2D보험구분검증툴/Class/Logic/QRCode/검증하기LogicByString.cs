@@ -1,5 +1,4 @@
-﻿using _2D보험구분검증툴.Class.Logic.DecryptLogic;
-using _2D보험구분검증툴.Logic;
+﻿using _2D보험구분검증툴.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,6 @@ namespace _2D보험구분검증툴.Class.Logic.QRCode
 {
     public class 검증하기LogicByString : Base검증하기Logic
     {
-        
         public 검증하기LogicByString(string encrpytedData, I외부모듈 외부모듈) : base(외부모듈)
         {
             _encryptedData = encrpytedData;

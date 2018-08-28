@@ -1,5 +1,5 @@
 ﻿using _2D보험구분검증툴.Class;
-using _2D보험구분검증툴.Class.Logic.DecryptLogic;
+using _2D보험구분검증툴.Class.Logic.QRCode;
 using _2D보험구분검증툴.Interface;
 using _2D보험구분검증툴.Test;
 using MessagingToolkit.QRCode.Codec;
@@ -18,16 +18,14 @@ namespace _2D보험구분검증툴.Logic
     public abstract class Base검증하기Logic : IDecryptable//, I검증하기
     {
         protected readonly I외부모듈 _외부모듈;
-        protected readonly I보험구분검증 _보험구분검증;
         protected string _encryptedData;
         protected string _filePath;
 
         public string ErrorMessage { get; set; }
 
-        public Base검증하기Logic(I외부모듈 외부모듈/*, I보험구분검증 보험구분검증*/)
+        public Base검증하기Logic(I외부모듈 외부모듈)
         {
             _외부모듈 = 외부모듈;
-            //_보험구분검증 = 보험구분검증;
         }
 
         public bool IsValid()
@@ -37,6 +35,11 @@ namespace _2D보험구분검증툴.Logic
                 ErrorMessage = string.Empty;
 
                 IsValidByLogic();
+            }
+            catch(InvalidVersionException ex)
+            {
+                // 로직 밖에서 UI변경과 함께 처리.
+                throw new InvalidVersionException(ex.Message);
             }
             catch (Exception ex)
             {

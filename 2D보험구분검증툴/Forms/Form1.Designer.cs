@@ -35,6 +35,11 @@
             this.btn파일선택 = new System.Windows.Forms.Button();
             this.btn닫기 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbo약품구분테스트 = new System.Windows.Forms.ComboBox();
+            this.btn타입설명 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbo보험구분테스트 = new System.Windows.Forms.ComboBox();
             this.btn검증 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn바코드보기 = new System.Windows.Forms.Button();
@@ -150,17 +155,14 @@
             this.usageCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.usage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn인증하기 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rb보험구분테스트 = new System.Windows.Forms.RadioButton();
-            this.btn타입설명 = new System.Windows.Forms.Button();
             this.btn검증결과폴더이동 = new System.Windows.Forms.Button();
             this.rb약품구분테스트 = new System.Windows.Forms.RadioButton();
-            this.cbo보험구분테스트 = new System.Windows.Forms.ComboBox();
-            this.cbo약품구분테스트 = new System.Windows.Forms.ComboBox();
             this.txt직접입력 = new System.Windows.Forms.TextBox();
             this.lbl직접입력 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -181,8 +183,6 @@
             this.grpIN1.SuspendLayout();
             this.tabRXD.SuspendLayout();
             this.grpRXD.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -245,6 +245,76 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "테스트 케이스";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbo약품구분테스트);
+            this.groupBox6.Controls.Add(this.btn타입설명);
+            this.groupBox6.Location = new System.Drawing.Point(136, 20);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(205, 43);
+            this.groupBox6.TabIndex = 12;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "약품정보";
+            // 
+            // cbo약품구분테스트
+            // 
+            this.cbo약품구분테스트.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo약품구분테스트.FormattingEnabled = true;
+            this.cbo약품구분테스트.Items.AddRange(new object[] {
+            "국민공단",
+            "차상위1",
+            "차상위2",
+            "차상위F",
+            "의료급여1종",
+            "의료급여2종",
+            "공무원상해",
+            "자동차보험",
+            "산재",
+            "보훈국비"});
+            this.cbo약품구분테스트.Location = new System.Drawing.Point(18, 16);
+            this.cbo약품구분테스트.Name = "cbo약품구분테스트";
+            this.cbo약품구분테스트.Size = new System.Drawing.Size(95, 20);
+            this.cbo약품구분테스트.TabIndex = 2;
+            // 
+            // btn타입설명
+            // 
+            this.btn타입설명.Location = new System.Drawing.Point(119, 14);
+            this.btn타입설명.Name = "btn타입설명";
+            this.btn타입설명.Size = new System.Drawing.Size(75, 23);
+            this.btn타입설명.TabIndex = 1;
+            this.btn타입설명.Text = "타입설명";
+            this.btn타입설명.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbo보험구분테스트);
+            this.groupBox1.Location = new System.Drawing.Point(11, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(119, 43);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "보험구분";
+            // 
+            // cbo보험구분테스트
+            // 
+            this.cbo보험구분테스트.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo보험구분테스트.FormattingEnabled = true;
+            this.cbo보험구분테스트.Items.AddRange(new object[] {
+            "국민공단",
+            "차상위1",
+            "차상위2",
+            "차상위F",
+            "의료급여1종",
+            "의료급여2종",
+            "공무원상해",
+            "자동차보험",
+            "산재",
+            "보훈국비"});
+            this.cbo보험구분테스트.Location = new System.Drawing.Point(6, 16);
+            this.cbo보험구분테스트.Name = "cbo보험구분테스트";
+            this.cbo보험구분테스트.Size = new System.Drawing.Size(94, 20);
+            this.cbo보험구분테스트.TabIndex = 1;
             // 
             // btn검증
             // 
@@ -1401,27 +1471,6 @@
             this.btn인증하기.Visible = false;
             this.btn인증하기.Click += new System.EventHandler(this.btn인증하기_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbo보험구분테스트);
-            this.groupBox1.Location = new System.Drawing.Point(11, 20);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(119, 43);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "보험구분";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.cbo약품구분테스트);
-            this.groupBox6.Controls.Add(this.btn타입설명);
-            this.groupBox6.Location = new System.Drawing.Point(136, 20);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(205, 43);
-            this.groupBox6.TabIndex = 12;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "약품정보";
-            // 
             // rb보험구분테스트
             // 
             this.rb보험구분테스트.AutoSize = true;
@@ -1435,15 +1484,6 @@
             this.rb보험구분테스트.UseVisualStyleBackColor = true;
             this.rb보험구분테스트.CheckedChanged += new System.EventHandler(this.rb보험구분테스트_CheckedChanged);
             // 
-            // btn타입설명
-            // 
-            this.btn타입설명.Location = new System.Drawing.Point(119, 14);
-            this.btn타입설명.Name = "btn타입설명";
-            this.btn타입설명.Size = new System.Drawing.Size(75, 23);
-            this.btn타입설명.TabIndex = 1;
-            this.btn타입설명.Text = "타입설명";
-            this.btn타입설명.UseVisualStyleBackColor = true;
-            // 
             // btn검증결과폴더이동
             // 
             this.btn검증결과폴더이동.Location = new System.Drawing.Point(392, 746);
@@ -1452,6 +1492,7 @@
             this.btn검증결과폴더이동.TabIndex = 7;
             this.btn검증결과폴더이동.Text = "검증결과 보기";
             this.btn검증결과폴더이동.UseVisualStyleBackColor = true;
+            this.btn검증결과폴더이동.Click += new System.EventHandler(this.btn검증결과폴더이동_Click);
             // 
             // rb약품구분테스트
             // 
@@ -1464,46 +1505,6 @@
             this.rb약품구분테스트.Text = "약품구분 테스트";
             this.rb약품구분테스트.UseVisualStyleBackColor = true;
             this.rb약품구분테스트.CheckedChanged += new System.EventHandler(this.rb약품구분테스트_CheckedChanged);
-            // 
-            // cbo보험구분테스트
-            // 
-            this.cbo보험구분테스트.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo보험구분테스트.FormattingEnabled = true;
-            this.cbo보험구분테스트.Items.AddRange(new object[] {
-            "국민공단",
-            "차상위1",
-            "차상위2",
-            "차상위F",
-            "의료급여1종",
-            "의료급여2종",
-            "공무원상해",
-            "자동차보험",
-            "산재",
-            "보훈국비"});
-            this.cbo보험구분테스트.Location = new System.Drawing.Point(6, 16);
-            this.cbo보험구분테스트.Name = "cbo보험구분테스트";
-            this.cbo보험구분테스트.Size = new System.Drawing.Size(94, 20);
-            this.cbo보험구분테스트.TabIndex = 1;
-            // 
-            // cbo약품구분테스트
-            // 
-            this.cbo약품구분테스트.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo약품구분테스트.FormattingEnabled = true;
-            this.cbo약품구분테스트.Items.AddRange(new object[] {
-            "국민공단",
-            "차상위1",
-            "차상위2",
-            "차상위F",
-            "의료급여1종",
-            "의료급여2종",
-            "공무원상해",
-            "자동차보험",
-            "산재",
-            "보훈국비"});
-            this.cbo약품구분테스트.Location = new System.Drawing.Point(18, 16);
-            this.cbo약품구분테스트.Name = "cbo약품구분테스트";
-            this.cbo약품구분테스트.Size = new System.Drawing.Size(95, 20);
-            this.cbo약품구분테스트.TabIndex = 2;
             // 
             // txt직접입력
             // 
@@ -1547,6 +1548,8 @@
             this.Name = "Form1";
             this.Text = "보험구분 검증";
             this.groupBox2.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1575,8 +1578,6 @@
             this.grpIN1.PerformLayout();
             this.tabRXD.ResumeLayout(false);
             this.grpRXD.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -17,8 +17,9 @@ using _2D보험구분검증툴.Helper;
 using static _2D보험구분검증툴.Test.TestEnum;
 using static System.Net.Mime.MediaTypeNames;
 using _2D보험구분검증툴.Class.Logic.보험구분Logic;
-using _2D보험구분검증툴.Class.Logic.DecryptLogic;
 using _2D보험구분검증툴.Class.Logic.QRCode;
+using MessagingToolkit.QRCode.ExceptionHandler;
+using System.Diagnostics;
 
 namespace _2D보험구분검증툴
 {
@@ -28,7 +29,7 @@ namespace _2D보험구분검증툴
         I인증하기 _인증하기Logic;
         IForm _FormLogic;
         private string _barcodeString;
-        private const string PATH = @"C:\보험구분검증결과\";
+        private const string RESULT_PATH = @"C:\보험구분검증결과\";
 
         #region TEST
         public e인증결과 _e인증결과 { get; private set; }
@@ -90,8 +91,17 @@ namespace _2D보험구분검증툴
 
         public bool 검증하기버튼(string path, Base검증하기Logic 검증하기Logic, I보험구분검증 보험구분검증Logic)
         {
-            if(!검증하기Logic.IsValid())
+            try
+            {
+                if (!검증하기Logic.IsValid())
+                    return false;
+            }
+            catch (InvalidVersionException ex)
+            {
+                MessageHelper.ShowMessageBox(ex.Message);
+                Change검증Mode();
                 return false;
+            }
 
             var originalBarcodeString = 검증하기Logic.GetDecryptedString();
 
@@ -139,6 +149,15 @@ namespace _2D보험구분검증툴
            
         }
 
+        private void Change검증Mode()
+        {
+            txt파일경로.Enabled = false;
+            txt파일경로.Text = string.Empty;
+
+            txt직접입력.Enabled = true;
+            txt직접입력.Text = string.Empty;
+        }
+
         public string GetDecryptedString(IDecryptable decryptLogic)
         {
             return decryptLogic.GetDecryptedString();
@@ -148,7 +167,9 @@ namespace _2D보험구분검증툴
         {
             string noHeaders = string.Empty;
 
-            if (ValidationLogic.Has줄바꿈Error(barcodeString))
+            if (barcodeString == null)
+                throw new MyLogicException(@"올바른 내용의 바코드가 아닙니다.");
+            else if (ValidationLogic.Has줄바꿈Error(barcodeString))
                 throw new MyLogicException(@"헤더와 헤더 사이에[\r\n]로 이루어진 줄바꿈이 없습니다.");
             else if (!ValidationLogic.HasAllProperHeaders(barcodeString, out noHeaders))
                 throw new MyLogicException($@"{noHeaders}헤더가 존재하지 않습니다. 헤더의 이름과 존재유무를 확인해주세요.");
@@ -324,16 +345,48 @@ namespace _2D보험구분검증툴
 
                 loadingThead.Dispose();
 
-                if (_오류목록.Count <= 0 && 검증결과)
-                    MessageBox.Show(this, "검증이 완료 되었습니다.");
+                if (_오류목록?.Count <= 0 && 검증결과)
+                    MessageHelper.ShowMessageBox($"검증이 완료 되었습니다.\n\n[{RESULT_PATH}]에 검증결과를 저장하였습니다.");
                 else
+                {
+                    InitUI();
                     throw new MyLogicException("검증에 실패했습니다.");
+                }
             }
             catch (MyLogicException ex)
             {
                 loadingThead.Dispose();
                 MessageHelper.ShowMessageBox(ex.exceptionMessage);
                 //MessageHelper.ShowMessageBox(ex.Message);
+            }
+        }
+
+        private void InitUI()
+        {
+            ClearLabelInfo();
+            lstError.Items.Clear();
+        }
+
+        private void ClearLabelInfo()
+        {
+            int startLabelNumber = 40; // 폼에서 라벨을 만들다보니 시작이 40번이 되었다.
+            int lastLabelNumber = 76; // 폼에서 라벨 마지막 번호.
+
+            int modelPropertyCount = lastLabelNumber - startLabelNumber;
+
+            for (int i = 0; i < modelPropertyCount; i++)
+            {
+                var labels = this.Controls.Find("label" + startLabelNumber++, true);
+
+                if (labels.Count() > 0)
+                {
+                    var targetLabel = labels[0] as Label;
+
+                    if (targetLabel != null)
+                    {
+                        targetLabel.Text = string.Empty;
+                    }
+                }
             }
         }
 
@@ -413,30 +466,9 @@ namespace _2D보험구분검증툴
             rb약품구분테스트.Checked = !rb보험구분테스트.Checked;
         }
 
-        //public void OpenFileDialog()
-        //{
-        //    using (var ofd = new OpenFileDialog() { ValidateNames = true, Multiselect = false })
-        //    {
-        //        if (ofd.ShowDialog() == DialogResult.OK)
-        //        {
-        //            //Is그룹박스닫힘 = true;
-        //            Enable검증결과Group(false);
-        //            txt파일경로.Text = ofd.FileName;
-        //        }
-        //    }
-        //}
-
-        //public void SaveResult(string insuranceName, string data)
-        //{
-        //    var fullPath = PATH + insuranceName + ".txt";
-
-        //    if (!Directory.Exists(PATH))
-        //        Directory.CreateDirectory(PATH);
-
-        //    if (File.Exists(fullPath))
-        //        File.Delete(fullPath);
-
-        //    File.WriteAllText(fullPath, data);
-        //}
+        private void btn검증결과폴더이동_Click(object sender, EventArgs e)
+        {
+            Process.Start(RESULT_PATH);
+        }
     }
 }
