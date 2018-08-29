@@ -5,14 +5,31 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _2D보험구분검증툴
 {
     public partial class Spinner : Form
     {
-        //public Form _parentForm { get; set; }
+        private static Spinner _instance;
+        private static BackgroundWorker _worker;
         private readonly Form _parentForm;
+        private readonly TaskScheduler _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+
+        public static Spinner GetInstance(Form parentForm, string message = "서버와 통신중입니다.")
+        {
+            if (_instance == null)
+                _instance = new Spinner(parentForm);
+
+            return _instance;
+        }
+
+        public static Spinner GetInstance()
+        {
+            return _instance;
+        }
 
         public Spinner(Form parentForm, string message = "서버와 통신중입니다.")
         {
@@ -36,20 +53,15 @@ namespace _2D보험구분검증툴
 
         public BackgroundWorker GetLoadingWorker(Spinner loadingImg)
         {
-            var worker = new BackgroundWorker();
-            //var loadingImg = new Spinner(Application.OpenForms["Form1"]);
-            //var loadingImg = this;
+            //var worker = new BackgroundWorker();
+            _worker = new BackgroundWorker();
 
-            worker.DoWork += new DoWorkEventHandler((object o, DoWorkEventArgs eargs) => {
+            _worker.DoWork += new DoWorkEventHandler((object o, DoWorkEventArgs eargs) => {
                 loadingImg.StartPosition = FormStartPosition.Manual;
-                //loadingImg.StartPosition = FormStartPosition.CenterParent;
-                //loadingImg._parentForm = parentFrom;
-                loadingImg.TopMost = true;
                 loadingImg.ShowFrom();
-                //loadingImg.ShowDialog(this);
             });
 
-            worker.Disposed += (object obj, EventArgs ea) => {
+            _worker.Disposed += (object obj, EventArgs ea) => {
 
                 // 핸들이 없으면 강제로 만들어준다.
                 IntPtr handle;
@@ -59,17 +71,9 @@ namespace _2D보험구분검증툴
                 var task = BeginInvoke(new Action(() => {
                     loadingImg.Close();
                 }));
-
-                //EndInvoke(task);
             };
 
-            //worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) => {
-            //    BeginInvoke(new Action(() => {
-            //        loadingImg.Close();
-            //    }));
-            //};
-
-            return worker;
+            return _worker;
         }
     }
 }

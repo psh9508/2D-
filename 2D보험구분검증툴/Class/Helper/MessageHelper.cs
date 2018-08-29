@@ -11,8 +11,10 @@ namespace _2D보험구분검증툴.Class
 
         public static void ShowMessageBox(string msg)
         {
-            if(!IsTest)
+            if (!IsTest)
+            {
                 System.Windows.Forms.MessageBox.Show(msg);
+            }
         }
     }
 }

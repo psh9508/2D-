@@ -91,6 +91,7 @@ namespace _2D보험구분검증툴
 
         public bool 검증하기버튼(string path, Base검증하기Logic 검증하기Logic, I보험구분검증 보험구분검증Logic)
         {
+            // 정합성 테스트
             try
             {
                 if (!검증하기Logic.IsValid())
@@ -99,12 +100,13 @@ namespace _2D보험구분검증툴
             catch (InvalidVersionException ex)
             {
                 MessageHelper.ShowMessageBox(ex.Message);
-                Change검증Mode();
+                
                 return false;
             }
 
             var originalBarcodeString = 검증하기Logic.GetDecryptedString();
 
+            // 올바른 바코드 테스트
             try
             {
                 _barcodeString = GetDecryptedString(검증하기Logic);
@@ -112,10 +114,12 @@ namespace _2D보험구분검증툴
             }
             catch (MyLogicException ex)
             {
+                InitUI();
                 MessageHelper.ShowMessageBox(ex.exceptionMessage);
                 return false;
             }
 
+            // 실제로 파씽
             try
             {
                 var parsedModel = ParseLogic.Parse(_barcodeString);
@@ -143,18 +147,29 @@ namespace _2D보험구분검증툴
             }
             catch (MyLogicException ex)
             {
+                InitUI();
                 MessageHelper.ShowMessageBox(ex.exceptionMessage);
                 return false;
             }
            
         }
 
-        private void Change검증Mode()
+        private void Change검증ModeTo직접입력()
         {
             txt파일경로.Enabled = false;
             txt파일경로.Text = string.Empty;
 
+            lbl직접입력.Enabled = true;
             txt직접입력.Enabled = true;
+            txt직접입력.Text = string.Empty;
+        }
+
+        private void Change검증ModeTo파일경로()
+        {
+            txt파일경로.Enabled = true;
+
+            lbl직접입력.Enabled = false;
+            txt직접입력.Enabled = false;
             txt직접입력.Text = string.Empty;
         }
 
@@ -300,6 +315,7 @@ namespace _2D보험구분검증툴
             _FormLogic.SetAfter파일선택((imagePath) =>
             {
                 //Is그룹박스닫힘 = true;
+                Change검증ModeTo파일경로();
                 Enable검증결과Group(false);
                 txt파일경로.Text = imagePath;
             });
@@ -329,8 +345,8 @@ namespace _2D보험구분검증툴
         #region Events
         private void btn검증_Click(object sender, EventArgs e)
         {
-            BackgroundWorker loadingThead = MakeLoadingBar();
-            loadingThead.RunWorkerAsync();
+            //BackgroundWorker loadingThead = MakeLoadingBar();
+            //loadingThead.RunWorkerAsync();
 
             _barcodeString = string.Empty;
 
@@ -343,19 +359,19 @@ namespace _2D보험구분검증툴
 
                 Enable검증결과Group(검증결과);
 
-                loadingThead.Dispose();
+                //loadingThead.Dispose();
 
                 if (_오류목록?.Count <= 0 && 검증결과)
                     MessageHelper.ShowMessageBox($"검증이 완료 되었습니다.\n\n[{RESULT_PATH}]에 검증결과를 저장하였습니다.");
                 else
                 {
-                    InitUI();
+                    Change검증ModeTo직접입력();
                     throw new MyLogicException("검증에 실패했습니다.");
                 }
             }
             catch (MyLogicException ex)
             {
-                loadingThead.Dispose();
+                //loadingThead.Dispose();
                 MessageHelper.ShowMessageBox(ex.exceptionMessage);
                 //MessageHelper.ShowMessageBox(ex.Message);
             }
@@ -392,7 +408,8 @@ namespace _2D보험구분검증툴
 
         private static BackgroundWorker MakeLoadingBar()
         {
-            var spinner = new Spinner(System.Windows.Forms.Application.OpenForms["Form1"], "검증하고 있습니다.");
+            //var spinner = new Spinner(System.Windows.Forms.Application.OpenForms["Form1"], "검증하고 있습니다.");
+            var spinner = Spinner.GetInstance(System.Windows.Forms.Application.OpenForms["Form1"], "검증하고 있습니다.");
             return spinner.GetLoadingWorker(spinner);
         }
 

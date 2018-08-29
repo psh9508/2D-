@@ -235,9 +235,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btn검증);
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Controls.Add(this.btn검증);
             this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(30, 126);
             this.groupBox2.Name = "groupBox2";

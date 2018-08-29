@@ -25,9 +25,9 @@ namespace _2D보험구분검증툴.Logic
         public bool UB2DCheckAuthProcess(string 요양기관기호/*, BackgroundWorker loadingSpinner*/)
         {
             string day;
-            //string caption = "2D 인증확인";
 
-            var progressbar = new Spinner(Application.OpenForms["Form1"]);
+            //var progressbar = new Spinner(Application.OpenForms["Form1"]);
+            var progressbar = Spinner.GetInstance(Application.OpenForms["Form1"]);
             var loadingThread = progressbar.GetLoadingWorker(progressbar);
 
             try
@@ -66,7 +66,8 @@ namespace _2D보험구분검증툴.Logic
             }
             catch (DllNotFoundException ex)
             {
-                loadingThread.Dispose();
+                //progressbar.DisposeSpiner();
+                //loadingThread.Dispose();
                 throw new DllNotFoundException(ex.Message);
                 //throw new MyDllNotFoundException(ex.Message, loadingThread);
             }

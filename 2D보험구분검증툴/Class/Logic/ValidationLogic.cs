@@ -142,7 +142,7 @@ namespace _2D보험구분검증툴.Logic
                     yield return new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 처방구분값이 유효하지 않습니다.API문서의 데이터 범위를 다시한번 확인 바랍니다." };
 
                 //급여구분 값 범위 확인.
-                string[] insuranceTypeList = { "1", "2", "3", "4", "5" };
+                string[] insuranceTypeList = { "1", "2", "3", "4", "5", "6", "7"};
                 if (!CheckScope(model.RXDs[i].급여구분, insuranceTypeList))
                     yield return new 오류목록Model { No = _errorCnt++, 메세지 = $"{i + 1}번째 약품의 급여구분값이 유효하지 않습니다. API문서의 데이터 범위를 다시한번 확인 바랍니다." };
 

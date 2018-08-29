@@ -1,4 +1,5 @@
 ﻿using _2D보험구분검증툴;
+using _2D보험구분검증툴.Class;
 using _2D보험구분검증툴.Class.Logic.QRCode;
 using Moq;
 using NUnit.Framework;
@@ -11,6 +12,17 @@ namespace UnitTests
 {
     public class 검증하기LogicByFileTests
     {
+        [SetUp]
+        public void setup()
+        {
+            MessageHelper.IsTest = true;
+        }
+
+        [TearDown]
+        public void teardown()
+        {
+            MessageHelper.IsTest = false;
+        }
         //[Test]
         //public void IsValid_경로가Null이거나EmptyString일때올바른메세지창나오나()
         //{
