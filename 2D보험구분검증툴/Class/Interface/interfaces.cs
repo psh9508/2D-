@@ -44,6 +44,7 @@ namespace _2D보험구분검증툴.Interface
 
     public interface I보험구분검증
     {
+        string Name { get; }
         bool Validation(BarcodeModel model);
         IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt);
     }

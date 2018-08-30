@@ -35,12 +35,12 @@
             this.btn파일선택 = new System.Windows.Forms.Button();
             this.btn닫기 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn검증 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbo약품구분테스트 = new System.Windows.Forms.ComboBox();
             this.btn타입설명 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbo보험구분테스트 = new System.Windows.Forms.ComboBox();
-            this.btn검증 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn바코드보기 = new System.Windows.Forms.Button();
             this.lbl오류목록여부 = new System.Windows.Forms.Label();
@@ -246,6 +246,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "테스트 케이스";
             // 
+            // btn검증
+            // 
+            this.btn검증.Location = new System.Drawing.Point(449, 32);
+            this.btn검증.Name = "btn검증";
+            this.btn검증.Size = new System.Drawing.Size(75, 23);
+            this.btn검증.TabIndex = 0;
+            this.btn검증.Text = "검증";
+            this.btn검증.UseVisualStyleBackColor = true;
+            this.btn검증.Click += new System.EventHandler(this.btn검증_Click);
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cbo약품구분테스트);
@@ -300,31 +310,10 @@
             // 
             this.cbo보험구분테스트.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo보험구분테스트.FormattingEnabled = true;
-            this.cbo보험구분테스트.Items.AddRange(new object[] {
-            "국민공단",
-            "차상위1",
-            "차상위2",
-            "차상위F",
-            "의료급여1종",
-            "의료급여2종",
-            "공무원상해",
-            "자동차보험",
-            "산재",
-            "보훈국비"});
             this.cbo보험구분테스트.Location = new System.Drawing.Point(6, 16);
             this.cbo보험구분테스트.Name = "cbo보험구분테스트";
             this.cbo보험구분테스트.Size = new System.Drawing.Size(94, 20);
             this.cbo보험구분테스트.TabIndex = 1;
-            // 
-            // btn검증
-            // 
-            this.btn검증.Location = new System.Drawing.Point(449, 32);
-            this.btn검증.Name = "btn검증";
-            this.btn검증.Size = new System.Drawing.Size(75, 23);
-            this.btn검증.TabIndex = 0;
-            this.btn검증.Text = "검증";
-            this.btn검증.UseVisualStyleBackColor = true;
-            this.btn검증.Click += new System.EventHandler(this.btn검증_Click);
             // 
             // groupBox3
             // 

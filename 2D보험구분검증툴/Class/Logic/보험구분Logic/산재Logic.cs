@@ -9,6 +9,8 @@ namespace _2D보험구분검증툴.Logic.보험구분Logic
 {
     public class 산재Logic : I보험구분검증
     {
+        public string Name { get { return "산재"; } }
+
         public IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt)
         {
             var retv = new List<오류목록Model>();

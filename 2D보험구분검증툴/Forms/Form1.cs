@@ -61,8 +61,28 @@ namespace _2D보험구분검증툴
             groupBox3.Enabled = false;
             groupBox6.Enabled = false;
 
+            cbo보험구분테스트.DataSource = Get보험검증LogicLists();
+            cbo보험구분테스트.DisplayMember = "Name";
+
             cbo보험구분테스트.SelectedIndex = 0;
             cbo약품구분테스트.SelectedIndex = 0;
+        }
+
+        private object Get보험검증LogicLists()
+        {
+            return new I보험구분검증[]
+            {
+                new 국민공단Logic(),
+                new 공무원상해Logic(),
+                new 보훈국비Logic(),
+                new 산재Logic(),
+                new 의료급여1종Logic(),
+                new 의료급여2종Logic(),
+                new 자동차보험Logic(),
+                new 차상위1Logic(),
+                new 차상위2Logic(),
+                new 차상위FLogic(),
+            };
         }
 
         public void 인증시도(string 요양기관기호 = "99999999")
@@ -100,28 +120,16 @@ namespace _2D보험구분검증툴
             catch (InvalidVersionException ex)
             {
                 MessageHelper.ShowMessageBox(ex.Message);
-                
                 return false;
             }
 
-            var originalBarcodeString = 검증하기Logic.GetDecryptedString();
-
-            // 올바른 바코드 테스트
             try
             {
+                // 올바른 바코드 테스트
                 _barcodeString = GetDecryptedString(검증하기Logic);
                 BasicLayoutTest(_barcodeString);
-            }
-            catch (MyLogicException ex)
-            {
-                InitUI();
-                MessageHelper.ShowMessageBox(ex.exceptionMessage);
-                return false;
-            }
 
-            // 실제로 파씽
-            try
-            {
+                // 실제로 파씽
                 var parsedModel = ParseLogic.Parse(_barcodeString);
 
                 DisplayData(parsedModel);
@@ -140,7 +148,7 @@ namespace _2D보험구분검증툴
                     var selectedInsuranceTypeName = GetSelectedInsuranceType();
 
                     if(!string.IsNullOrEmpty(selectedInsuranceTypeName))
-                        _FormLogic.SaveResult(selectedInsuranceTypeName, originalBarcodeString);
+                        _FormLogic.SaveResult(selectedInsuranceTypeName, 검증하기Logic.GetEncrytedString());
                 }
 
                 return parsedModel == null ? false : true;
@@ -192,28 +200,19 @@ namespace _2D보험구분검증툴
 
         private I보험구분검증 Get보험검증Logic()
         {
-            var 선택된보험구분 = cbo보험구분테스트.Text;
+            try
+            {
+                var 선택된보험구분 = cbo보험구분테스트.SelectedItem as I보험구분검증;
 
-            if (선택된보험구분 == "국민공단")
-                return new 국민공단Logic();
-            else if (선택된보험구분 == "차상위1")
-                return new 차상위1Logic();
-            else if (선택된보험구분 == "차상위2")
-                return new 차상위2Logic();
-            else if (선택된보험구분 == "차상위F")
-                return new 차상위FLogic();
-            else if (선택된보험구분 == "의료급여1종")
-                return new 의료급여1종Logic();
-            else if (선택된보험구분 == "의료급여2종")
-                return new 의료급여2종Logic();
-            else if (선택된보험구분 == "공무원상해")
-                return new 공무원상해Logic();
-            else if (선택된보험구분 == "자동차보험")
-                return new 자동차보험Logic();
-            else if (선택된보험구분 == "산재")
-                return new 산재Logic();
-            else
-                return new 국민공단Logic(); // UI 기본 값이 이 값이라서 default로 해놓음.
+                if (선택된보험구분 != null)
+                    return 선택된보험구분;
+                else
+                    throw new Exception("선택된 보험구분이 I보험구분검증으로 변환되지 않습니다.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         private Base검증하기Logic Get검증하기Logic()

@@ -8,6 +8,8 @@ namespace _2D보험구분검증툴.Class.Logic.보험구분Logic
 {
     class 보훈국비Logic : I보험구분검증
     {
+        public string Name { get { return "보훈국비"; } }
+
         public IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt)
         {
             var retv = new List<오류목록Model>();

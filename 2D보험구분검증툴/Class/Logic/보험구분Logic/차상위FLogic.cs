@@ -9,6 +9,8 @@ namespace _2D보험구분검증툴.Logic.보험구분Logic
 {
     public class 차상위FLogic : I보험구분검증
     {
+        public string Name { get { return "차상위F"; } }
+
         public IEnumerable<오류목록Model> GetErrorModel(BarcodeModel model, int cnt)
         {
             return new List<오류목록Model>() { new 오류목록Model
