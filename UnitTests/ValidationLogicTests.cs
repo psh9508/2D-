@@ -432,7 +432,7 @@ DG1¿¿¿1¿¿¿12345¿1011¿서울제1지구¿¿ ¿ ¿ ¿ ¿ ¿ ";
             Assert.Multiple(() =>
             {
                 Assert.That(1, Is.EqualTo(errorModel.Count));
-                Assert.That("[MSH] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[0].메세지));
+                Assert.That("[MSH] 헤더가 누락 되었습니다. 혹은 헤더 뒤에 구분자가 잘 들어있는지 확인해주세요.", Is.EqualTo(errorModel[0].메세지));
             });
         }
 
@@ -446,8 +446,8 @@ DG1¿¿¿1¿¿¿12345¿1011¿서울제1지구¿¿ ¿ ¿ ¿ ¿ ¿ ";
             Assert.Multiple(() =>
             {
                 Assert.That(2, Is.EqualTo(errorModel.Count));
-                Assert.That("[FAC] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[0].메세지));
-                Assert.That("[IN1] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[1].메세지));
+                Assert.That("[FAC] 헤더가 누락 되었습니다. 혹은 헤더 뒤에 구분자가 잘 들어있는지 확인해주세요.", Is.EqualTo(errorModel[0].메세지));
+                Assert.That("[IN1] 헤더가 누락 되었습니다. 혹은 헤더 뒤에 구분자가 잘 들어있는지 확인해주세요.", Is.EqualTo(errorModel[1].메세지));
             });
         }
 
@@ -526,7 +526,7 @@ DG1¿¿¿1¿¿¿12345¿1011¿서울제1지구¿¿ ¿ ¿ ¿ ¿ ¿ ";
             Assert.Multiple(() =>
             {
                 Assert.That(1, Is.EqualTo(errorModel.Count));
-                Assert.That("[RXD] 헤더가 누락 되었습니다.", Is.EqualTo(errorModel[0].메세지));
+                Assert.That("[RXD] 헤더가 누락 되었습니다. 혹은 헤더 뒤에 구분자가 잘 들어있는지 확인해주세요.", Is.EqualTo(errorModel[0].메세지));
             });
         }
 

@@ -16,13 +16,26 @@ namespace _2D보험구분검증툴
             InitializeComponent();
 
             lblTitle.Text = 검증타입;
-            richTextBox1.Text = barcodeString;
+
+            richTextBox1.Text = string.IsNullOrEmpty(barcodeString) ? "바코드를 검증 후 확인해주시기 바랍니다." : barcodeString;
         }
 
 
         private void btn닫기_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Escape:
+                    btn닫기.PerformClick();
+                    return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

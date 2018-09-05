@@ -57,7 +57,7 @@ namespace _2D보험구분검증툴.Logic
                     {
                         No = _errorCnt++,
                         유형 = "헤더 누락",
-                        메세지 = $"[{headerProp.Name}] 헤더가 누락 되었습니다.",
+                        메세지 = $"[{headerProp.Name}] 헤더가 누락 되었습니다. 혹은 헤더 뒤에 구분자가 잘 들어있는지 확인해주세요.",
                     });
                 }
                 else if (headerValue is List<RXD>)
@@ -70,7 +70,7 @@ namespace _2D보험구분검증툴.Logic
                         {
                             No = _errorCnt++,
                             유형 = "헤더 누락",
-                            메세지 = $"[RXD] 헤더가 누락 되었습니다.",
+                            메세지 = $"[RXD] 헤더가 누락 되었습니다. 혹은 헤더 뒤에 구분자가 잘 들어있는지 확인해주세요.",
                         });
                     }
                 }
@@ -233,21 +233,21 @@ namespace _2D보험구분검증툴.Logic
 
             foreach (var item in splitedData)
             {
-                if (item == "MSH")
+                if (item.Contains("MSH"))
                     headers[0] = true;
-                else if (item == "FAC")
+                else if (item.Contains("FAC"))
                     headers[1] = true;
-                else if (item == "PRD")
+                else if (item.Contains("PRD"))
                     headers[2] = true;
-                else if (item == "PID")
+                else if (item.Contains("PID"))
                     headers[3] = true;
-                else if (item == "ORC")
+                else if (item.Contains("ORC"))
                     headers[4] = true;
-                else if (item == "DG1")
+                else if (item.Contains("DG1"))
                     headers[5] = true;
-                else if (item == "IN1")
+                else if (item.Contains("IN1"))
                     headers[6] = true;
-                else if (item == "RXD")
+                else if (item.Contains("RXD"))
                     headers[7] = true;
             }
 

@@ -317,7 +317,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btn바코드보기);
             this.groupBox3.Controls.Add(this.lbl오류목록여부);
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Controls.Add(this.groupBox4);
@@ -330,7 +329,7 @@
             // btn바코드보기
             // 
             this.btn바코드보기.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn바코드보기.Location = new System.Drawing.Point(433, 316);
+            this.btn바코드보기.Location = new System.Drawing.Point(463, 518);
             this.btn바코드보기.Name = "btn바코드보기";
             this.btn바코드보기.Size = new System.Drawing.Size(105, 19);
             this.btn바코드보기.TabIndex = 22;
@@ -1519,6 +1518,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 778);
             this.ControlBox = false;
+            this.Controls.Add(this.btn바코드보기);
             this.Controls.Add(this.txt직접입력);
             this.Controls.Add(this.rb보험구분테스트);
             this.Controls.Add(this.lbl직접입력);

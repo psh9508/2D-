@@ -42,7 +42,7 @@ namespace _2D보험구분검증툴.Class.Logic.QRCode
             else if (!Is파일존재(_filePath))
                 ErrorMessage = "입력하신 경로에 파일이 존재하지 않습니다.";
             else if (!IsValidVersion(_filePath))
-                ErrorMessage = "이용가능한 버전의 QR코드가 아닙니다.";
+                ErrorMessage = "이용가능한 버전의 QR코드가 아닙니다.\n\nQR코드를 직접 읽은 후 직접입력을 이용해 테스트 해주시기바랍니다.";
             else if (!Is파일QR코드(_filePath))
                 ErrorMessage = "입력하신 경로에 파일이 QR코드가 아닙니다.";
         }

@@ -114,6 +114,9 @@ namespace _2D보험구분검증툴
             // 정합성 테스트
             try
             {
+                if (검증하기Logic == null || 보험구분검증Logic == null)
+                    return false;
+
                 if (!검증하기Logic.IsValid())
                     return false;
             }
@@ -128,14 +131,12 @@ namespace _2D보험구분검증툴
                 // 올바른 바코드 테스트
                 _barcodeString = GetDecryptedString(검증하기Logic);
                 BasicLayoutTest(_barcodeString);
+                _오류목록 = GetErrorData(_barcodeString);
 
                 // 실제로 파씽
                 var parsedModel = ParseLogic.Parse(_barcodeString);
 
                 DisplayData(parsedModel);
-
-                if(_barcodeString != null)
-                    _오류목록 = GetErrorData(_barcodeString);
 
                 if(parsedModel != null)
                     if (!보험구분검증Logic.Validation(parsedModel))
@@ -202,12 +203,7 @@ namespace _2D보험구분검증툴
         {
             try
             {
-                var 선택된보험구분 = cbo보험구분테스트.SelectedItem as I보험구분검증;
-
-                if (선택된보험구분 != null)
-                    return 선택된보험구분;
-                else
-                    throw new Exception("선택된 보험구분이 I보험구분검증으로 변환되지 않습니다.");
+                return cbo보험구분테스트.SelectedItem as I보험구분검증;
             }
             catch (Exception ex)
             {
@@ -280,8 +276,11 @@ namespace _2D보험구분검증툴
 
         public List<오류목록Model> GetErrorData(string data)
         {
+            if (string.IsNullOrEmpty(data))
+                throw new MyLogicException(@"올바른 내용의 바코드가 아닙니다.");
+
             // 가장 마지막에 \r\n이 있다면 삭제해준다.
-            while(data.EndsWith("\r\n"))
+            while (data.EndsWith("\r\n"))
             {
                 var idx = data.LastIndexOf("\r\n");
                 data = data.Substring(0, idx);

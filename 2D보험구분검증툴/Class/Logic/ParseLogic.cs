@@ -102,37 +102,88 @@ namespace _2D보험구분검증툴.Logic
             props[valueOrder].SetValue(header, value.Trim(), BindingFlags.SetProperty, null, null, null);
         }
 
-        public static IEnumerable<string> GetAllPropertiesValue(BarcodeModel data)
+        //public static IEnumerable<string> GetAllPropertiesValue(BarcodeModel data)
+        //{
+        //    var headerProps = data.GetType().GetProperties();
+
+        //    foreach (var headerProp in headerProps)
+        //    {
+        //        var header = headerProp.GetValue(data, null);
+        //        var headerValues = header.GetType().GetProperties();
+
+        //        // RXD는 따로 처리하자.
+        //        if (headerProp.Name == "RXDs")
+        //        {
+        //            break;
+        //            //    foreach (var RXD in header as IEnumerable<RXD>)
+        //            //    {
+        //            //        var RXDprops = RXD.GetType().GetProperties();
+
+        //            //        foreach (var RXDProp in RXDprops)
+        //            //        {
+        //            //            yield return RXDProp.GetValue(RXD, null) as string;
+        //            //        }
+        //            //    }
+        //        }
+        //        else
+        //        {
+        //            foreach (var prop in headerValues)
+        //            {
+        //                yield return prop.GetValue(header, null) as string;
+        //            }
+        //        }
+        //    }
+        //}
+
+        public static List<string> GetAllPropertiesValue(BarcodeModel data)
         {
+            var retv = new List<string>();
             var headerProps = data.GetType().GetProperties();
 
-            foreach (var headerProp in headerProps)
+            try
             {
-                var header = headerProp.GetValue(data, null);
-                var headerValues = header.GetType().GetProperties();
-
-                // RXD는 따로 처리하자.
-                if (headerProp.Name == "RXDs")
+                foreach (var headerProp in headerProps)
                 {
-                    break;
-                    //    foreach (var RXD in header as IEnumerable<RXD>)
-                    //    {
-                    //        var RXDprops = RXD.GetType().GetProperties();
+                    var header = headerProp.GetValue(data, null);
 
-                    //        foreach (var RXDProp in RXDprops)
-                    //        {
-                    //            yield return RXDProp.GetValue(RXD, null) as string;
-                    //        }
-                    //    }
-                }
-                else
-                {
-                    foreach (var prop in headerValues)
+                    if (header == null)
+                        continue;
+
+                    var headerValues = header.GetType().GetProperties();
+
+                    // RXD는 따로 처리하자.
+                    if (headerProp.Name == "RXDs")
                     {
-                        yield return prop.GetValue(header, null) as string;
+                        break;
+                        //    foreach (var RXD in header as IEnumerable<RXD>)
+                        //    {
+                        //        var RXDprops = RXD.GetType().GetProperties();
+
+                        //        foreach (var RXDProp in RXDprops)
+                        //        {
+                        //            yield return RXDProp.GetValue(RXD, null) as string;
+                        //        }
+                        //    }
+                    }
+                    else
+                    {
+                        foreach (var prop in headerValues)
+                        {
+                            retv.Add(prop.GetValue(header, null) as string);
+                        }
                     }
                 }
             }
+            //catch (NullReferenceException ex)
+            //{
+            //    throw new MyLogicException("올바르게 파씽하지 못했습니다.\n\n오류목록과 바코드내용보기를 이용해 바코드의 내용을 확인해주세요");
+            //}
+            catch (Exception)
+            {
+                // 바코드 검증에 에러가 있어도 결과를 보여준다.
+            }
+
+            return retv;
         }
 
         // 재귀를 이용해 범용적으로 쓸 수 있는 함수를 만들어보자.
