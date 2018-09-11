@@ -11,7 +11,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using ZXing;
 
 namespace _2D보험구분검증툴.Logic
 {

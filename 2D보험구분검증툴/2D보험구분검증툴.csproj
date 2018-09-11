@@ -97,13 +97,15 @@
     <Reference Include="TouchlessLib">
       <HintPath>..\..\QRCode_2\lib\TouchlessLib.dll</HintPath>
     </Reference>
-    <Reference Include="zxing.ce2.0">
+    <Reference Include="zxing.ce2.0, Version=0.16.4.0, Culture=neutral, PublicKeyToken=830ae994e36ac27d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\zxing.ce2.0.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Enums.cs" />
     <Compile Include="Class\HeaderAttribute.cs" />
+    <Compile Include="Class\Helper\EnumerableHelper.cs" />
     <Compile Include="Class\Helper\MessageHelper.cs" />
     <Compile Include="Class\Interface\IDecryptable.cs" />
     <Compile Include="Class\Logic\검증하기\검증하기LogicByFile.cs" />
@@ -199,6 +201,7 @@
   <ItemGroup>
     <EmbeddedResource Include="ref\MessagingToolkit.QRCode.dll" />
     <EmbeddedResource Include="ref\TouchlessLib.dll" />
+    <EmbeddedResource Include="ref\zxing.ce2.0.dll" />
     <Content Include="UBEditor.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -1,4 +1,5 @@
 ﻿using _2D보험구분검증툴.Class;
+using _2D보험구분검증툴.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,9 @@ namespace _2D보험구분검증툴.Logic
             if (model.IN1.보험구분.Trim() == "3")
                 if (!CheckTypeOfDate(model.ORC.재해발생일.Trim()))
                     retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = "재해발생일 값이 날짜 타입이 아닙니다. YYYYMMDD 형식으로 입력 바랍니다." });
+
+            if(!model.ORC.사용기간.IsNumeric())
+                retv.Add(new 오류목록Model { No = _errorCnt++, 메세지 = "ORC헤더의 사용기간은 정수값만 들어가야 합니다." });
 
             retv.AddRange(CheckDrugValidation(model));
 
