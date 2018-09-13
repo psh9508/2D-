@@ -364,6 +364,17 @@ PID¿이태규¿6909191446718
 ORC¿2018082100001¿¿¿V193¿7¿¿중증질환 : V193
 DG1¿¿¿1¿¿¿12345¿1011¿서울제1지구¿¿ ¿ ¿ ¿ ¿ ¿ ";
 
+        const string 사용기간숫자아닌경우 = @"MSH¿0.8.0.0¿291¿PHIS¿20180903090320
+FAC¿38700085¿의령군보건소¿경상남도 의령군 의령읍 서동리 534¿055-570-4005¿055-570-4018¿gu0609@korea.kr
+PRD¿정희용¿의사¿130812
+PID¿김종호¿5101041891910
+ORC¿2018090310001¿¿¿¿7일¿¿
+DG1¿I109¿
+IN1¿1¿¿¿30073936919¿¿¿¿¿¿¿¿¿
+RXD¿1¿1¿1¿643306540¿¿1¿1¿90¿¿
+RXD¿1¿1¿1¿641100270¿¿1¿1¿90¿¿
+";
+
 
         [SetUp]
         public void SetUp()
@@ -648,6 +659,20 @@ DG1¿¿¿1¿¿¿12345¿1011¿서울제1지구¿¿ ¿ ¿ ¿ ¿ ¿ ";
                 Assert.That("1번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.", Is.EqualTo(errorModel[0].메세지));
                 Assert.That("4번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.", Is.EqualTo(errorModel[1].메세지));
                 Assert.That("7번째 RXD헤더의 약품명이 생략되지 않았습니다. 청구코드가 있는 경우 약품명은 생략되어야합니다.", Is.EqualTo(errorModel[2].메세지));
+            });
+        }
+
+        [Test]
+        public void 사용기간숫자아닌경우Test()
+        {
+            var data = 사용기간숫자아닌경우.Replace("\r\n", "¿").Split('¿');
+
+            var errorModel = _2D보험구분검증툴.Logic.ValidationLogic.GetErrorMessage(data);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(1, Is.EqualTo(errorModel.Count));
+                Assert.That(errorModel[0].메세지, Is.EqualTo("ORC헤더의 사용기간은 정수값만 들어가야 합니다."));
             });
         }
 
